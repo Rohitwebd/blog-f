@@ -16,8 +16,8 @@ export default function Tech() {
               </div>
             </div>
             <div className="col-lg-7">
-              <div className="hero-img-wrap">
-                <img src="images/couch.png" className="img-fluid" />
+              <div className="hero-img-wrap ">
+                <img src="images/3252880.jpg" className="img-fluid" />
               </div>
             </div>
           </div>

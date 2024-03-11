@@ -8,7 +8,7 @@ export default function Signup() {
                     <img src="images/bird_2.jpg" alt="" />
                 </div>
                 <div className="text-center mt-4 name">
-                    Furni.
+                    Sign Up
                 </div>
                 <form className="p-3 mt-3">
                     <div className="form-field d-flex align-items-center">
@@ -30,7 +30,7 @@ export default function Signup() {
                     <button className="btn mt-3">Sign Up</button>
                 </form>
                 <div className="text-center fs-6">
-                    <Link href={"/"}>Forget password?</Link> or <Link href={"/login"}>Login</Link>
+                    <Link href={"/forgot-password"}>Forget password?</Link> or <Link href={"/login"}>Login</Link>
                 </div>
             </div>
         </>
