@@ -8,7 +8,7 @@ export default function Footer() {
     const pathname = usePathname()
     console.log(pathname)
     if (pathname !== "/login" && pathname !== "/signup" 
-    && pathname !== "/forgot-password" && pathname !== "/reset-password") {
+    && pathname !== "/forgot-password" && pathname !== "/reset-password" && pathname !== "/profile") {
 
         return (
             <>
