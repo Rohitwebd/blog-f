@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 
 export default function Resetpassword() {
@@ -13,11 +14,11 @@ export default function Resetpassword() {
                 <form className="p-3 mt-3">
                     <div className="form-field d-flex align-items-center">
                         <span className="far fa-user"></span>
-                        <input type="text" name="userName" id="userName" placeholder="New Password" />
+                        <input type="text" name="new-password" id="new-password" placeholder="New Password" />
                     </div>
                     <div className="form-field d-flex align-items-center">
                         <span className="fas fa-key"></span>
-                        <input type="text" name="password" id="pwd" placeholder="Confirm Password" />
+                        <input type="text" name="confirm-password" id="confirm-password" placeholder="Confirm Password" />
                     </div>
                     <button className="btn mt-3">Submit</button>
                 </form>

@@ -1174,3 +1174,10 @@ body {
 .profile-bg {
   background: linear-gradient(to right, #e96443, #904e95);
 }
+
+/* ================ vadidation error ================== */
+
+.form-error {
+  font-size: .9rem;
+  color: #b22b27;
+}
