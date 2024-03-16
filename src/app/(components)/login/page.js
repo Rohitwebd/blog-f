@@ -1,10 +1,11 @@
 "use client"
 import Link from "next/link";
 import { useFormik } from "formik";
-import { loginSchema } from "../validaSchema/page";
+import { loginSchema } from "../Schema/page";
+import axios from "axios";
 
 const initialValues = {
-    username: "",
+    email: "",
     password: ""
 };
 
@@ -20,6 +21,10 @@ export default function Login() {
                 console.log(
                     values
                 );
+                
+
+
+                
                 action.resetForm();
             },
         });
@@ -34,20 +39,20 @@ export default function Login() {
                 </div>
                 <form className="p-3 mt-3" onSubmit={handleSubmit}>
                     <div className="form-field d-flex align-items-center">
+                        <span className="far fa-user"></span>
                         <input
-                            type="username"
+                            type="email"
                             autoComplete="off"
-                            name="username"
-                            id="username"
-                            placeholder="Username"
-                            value={values.username}
+                            name="email"
+                            id="email"
+                            placeholder="E-mail"
+                            value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        
                     </div>
-                    {errors.username && touched.username ? (
-                        <p className="form-error">{errors.username}</p>
+                    {errors.email && touched.email ? (
+                        <p className="form-error">{errors.email}</p>
                     ) : null}
                    
 
