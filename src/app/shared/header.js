@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCross, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 // import {} from '@fortawesome/free-brands-svg-icons'
 import React, { useState } from 'react';
 
@@ -27,7 +27,6 @@ export default function Header() {
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <FontAwesomeIcon icon="fa-regular fa-circle-xmark" />
                     <div className="collapse navbar-collapse" id="navbarsFurni">
                         <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                             <li className={pathname === "/" ? "active" : ""}>
@@ -45,7 +44,7 @@ export default function Header() {
 
                         <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                             <li><Link className="nav-link" href={"/login"}><img src="images/user.svg" /></Link></li>
-                            <li><button className="nav-link" onClick={toggle}><FontAwesomeIcon icon={faSearch} /></button></li>
+                            <li><button className="nav-link text-light" onClick={toggle}><FontAwesomeIcon icon={faSearch} /></button></li>
                         </ul>
                     </div>
                 </div>
@@ -58,11 +57,11 @@ export default function Header() {
                         <div className="row py-2">
                             <div className="col-md-9">
                                 <div className="boxContent">
-                                    <input className="search-bar" />
+                                    <input className="search-bar" placeholder="  Search" />
                                 </div>
                             </div>
                             <div className="col-md-3">
-
+                               <a className="text-danger fa-2x" onClick={toggle}><FontAwesomeIcon icon={faXmark} /></a> 
                             </div>
                         </div>
                     </div>

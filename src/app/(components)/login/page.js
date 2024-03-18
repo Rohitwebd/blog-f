@@ -21,10 +21,18 @@ export default function Login() {
                 console.log(
                     values
                 );
-                
 
+                const onSubmit = async () => {
+            
+                    try {
+                      const res = await axios.post('http://localhost:7000/api/auth/login',values)
+                      console.log(res.data)
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  }
+                  onSubmit()
 
-                
                 action.resetForm();
             },
         });
@@ -54,7 +62,7 @@ export default function Login() {
                     {errors.email && touched.email ? (
                         <p className="form-error">{errors.email}</p>
                     ) : null}
-                   
+
 
                     <div className="form-field d-flex align-items-center">
                         <input
@@ -67,11 +75,11 @@ export default function Login() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
-                        
+
                     </div>
                     {errors.password && touched.password ? (
-                            <p className="form-error">{errors.password}</p>
-                        ) : null}
+                        <p className="form-error">{errors.password}</p>
+                    ) : null}
 
 
                     <button className="btn mt-3" type="submit">Login</button>
