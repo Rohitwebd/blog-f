@@ -24,7 +24,6 @@ export default function Blog() {
       </div>
       {/* <!-- End Hero Section --> */}
 
-
       {/* <!-- Start Blog Section --> */}
       <div className="blog-section">
         <div className="container">

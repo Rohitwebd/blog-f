@@ -40,6 +40,7 @@ export default function Header() {
                             <li className={pathname === "/fashion" ? "active" : ""}><Link className="nav-link" href={"/fashion"}>Fashion</Link></li>
                             <li className={pathname === "/blog" ? "active" : ""}><Link className="nav-link" href={"/blog"}>Blog</Link></li>
                             <li className={pathname === "/contact" ? "active" : ""}><Link className="nav-link" href={"/contact"}>Contact us</Link></li>
+                            <li className={pathname === "/profile" ? "active" : ""}><Link className="nav-link" href={"/profile"}>Profile</Link></li>
                         </ul>
 
                         <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">

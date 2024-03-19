@@ -13,13 +13,13 @@ export default function Profile() {
                                     <div className="row">
                                         <div className="col-md-5">
                                             <div className="profile mr-3">
-                                                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" className="rounded mb-2 img-thumbnail" />
+                                                <img src="images/rohit-profile.jpg" alt="..." width="130" className="rounded mb-2 img-thumbnail" />
                                             </div>
                                         </div>
                                         <div className="col-md-7">
                                             <div className="media-body mb-5 text-white">
                                                 <h4 className="mt-0 mb-2"> Rohit Kewat</h4>
-                                                <p className="small mb-4 py-0"><i className="fas fa-map-marker-alt mr-2"></i> India </p>
+                                                <p className="small mb-4 py-0"><i className="fas fa-map-marker-alt mr-2"></i> Khalghat </p>
                                             </div>
                                         </div>
                                     </div>
