@@ -1,18 +1,16 @@
-import Image from "next/image";
 
-export default function Blogdetails(params) {
+export default function Blogdetails({ params }) {
     return (
         <>
             <div>
-                <Image height={300} width={1400} src="/images/blogdetails-img.jpg" alt="blog-img" />
+                <img height={300} width={1400} src="/images/blogdetails-img.jpg" alt="blog-img" />
             </div>
 
             <div className="blog-section">
                 <div className="container">
-
                     <div className="col-md-12 mb-5">
                         <div className="post-entry">
-                            <a href="#" className="post-thumbnail"><img src="images/post-1.jpg" alt="Image" className="img-fluid" /></a>
+                            <a href="#" className="post-thumbnail"><img src="../images/post-1.jpg" alt="Image" className="img-fluid" /></a>
                             <div className="post-content-entry">
                                 <h2><a href="#">First Time Home Owner Ideas</a></h2>
                                 <div className="meta">
@@ -27,7 +25,7 @@ export default function Blogdetails(params) {
 
                     <div className="col-md-12 mb-5">
                         <div className="post-entry">
-                            <a href="#" className="post-thumbnail"><img src="images/post-2.jpg" alt="Image" className="img-fluid" /></a>
+                            <a href="#" className="post-thumbnail"><img src="../images/post-2.jpg" alt="Image" className="img-fluid" /></a>
                             <div className="post-content-entry">
                                 <h2><a href="#">How To Keep Your Furniture Clean</a></h2>
                                 <div className="meta">
@@ -42,7 +40,7 @@ export default function Blogdetails(params) {
 
                     <div className="col-md-12 mb-5">
                         <div className="post-entry">
-                            <a href="#" className="post-thumbnail"><img src="images/post-3.jpg" alt="Image" className="img-fluid" /></a>
+                            <a href="#" className="post-thumbnail"><img src="../images/post-3.jpg" alt="Image" className="img-fluid" /></a>
                             <div className="post-content-entry">
                                 <h2><a href="#">Small Space Furniture Apartment Ideas</a></h2>
                                 <div className="meta">

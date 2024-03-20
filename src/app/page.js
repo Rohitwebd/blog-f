@@ -16,7 +16,7 @@ export default function Home() {
             </div>
             <div className="col-lg-7">
               <div className="hero-img-wrap">
-                <img src="images/couch.png" className="img-fluid" />
+                <img src="images/homepage.png" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -154,8 +154,8 @@ export default function Home() {
             <div className="col-lg-7 mb-5 mb-lg-0">
               <div className="imgs-grid">
                 <div className="grid grid-1"><img src="images/img-grid-1.jpg" alt="Untree.co" /></div>
-                <div className="grid grid-2"><img src="images/img-grid-2.jpg" alt="Untree.co" /></div>
-                <div className="grid grid-3"><img src="images/img-grid-3.jpg" alt="Untree.co" /></div>
+                <div className="grid grid-2"><img src="images/home-grid2.jpg" alt="Untree.co" /></div>
+                <div className="grid grid-3"><img src="images/home-grid3.jpg" alt="Untree.co" /></div>
               </div>
             </div>
             <div className="col-lg-5 ps-lg-5">
@@ -175,56 +175,7 @@ export default function Home() {
       </div>
       {/* <!-- End We Help Section --> */}
 
-      {/* <!-- Start Popular Product --> */}
-      <div className="popular-product">
-        <div className="container">
-          <div className="row">
-
-            <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-              <div className="product-item-sm d-flex">
-                <div className="thumbnail">
-                  <img src="images/product-1.png" alt="Image" className="img-fluid" />
-                </div>
-                <div className="pt-3">
-                  <h3>Nordic Chair</h3>
-                  <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-              <div className="product-item-sm d-flex">
-                <div className="thumbnail">
-                  <img src="images/product-2.png" alt="Image" className="img-fluid" />
-                </div>
-                <div className="pt-3">
-                  <h3>Kruzo Aero Chair</h3>
-                  <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-              <div className="product-item-sm d-flex">
-                <div className="thumbnail">
-                  <img src="images/product-3.png" alt="Image" className="img-fluid" />
-                </div>
-                <div className="pt-3">
-                  <h3>Ergonomic Chair</h3>
-                  <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                  <p><a href="#">Read More</a></p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      {/* <!-- End Popular Product --> */}
-
-      {/* <!-- Start Testimonial Slider --> */}
+    {/* <!-- Start Testimonial Slider --> */}
      <Testimonial />
       {/* <!-- End Testimonial Slider --> */}
 

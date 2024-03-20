@@ -1,4 +1,5 @@
 import Testimonial from '@/app/shared/testimonal';
+import Link from 'next/link';
 
 export default function Blog() {
   return (
@@ -34,7 +35,7 @@ export default function Blog() {
               <div className="post-entry">
                 <a href="#" className="post-thumbnail"><img src="images/post-1.jpg" alt="Image" className="img-fluid" /></a>
                 <div className="post-content-entry">
-                  <h3><a href="#">First Time Home Owner Ideas</a></h3>
+                  <h3><Link href={"/blog/1"}>First Time Home Owner Ideas</Link></h3>
                   <div className="meta">
                     <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
                   </div>
