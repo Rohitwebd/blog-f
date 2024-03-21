@@ -2,7 +2,9 @@
 import Link from "next/link";
 import { useFormik } from "formik";
 import { loginSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const initialValues = {
     email: "",
@@ -11,6 +13,7 @@ const initialValues = {
 
 
 export default function Login() {
+    const router = useRouter()
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
@@ -26,9 +29,12 @@ export default function Login() {
             
                     try {
                       const res = await axios.post('http://localhost:7000/api/auth/login',values)
+                      toast.success(res.data.message,{theme:"dark",position:"top-center"})
+                      router.push("/profile")
                       console.log(res.data)
                     } catch (error) {
-                      console.log(error)
+                        toast.error(error.response.data.message)
+                        console.log(error)
                     }
                   }
                   onSubmit()

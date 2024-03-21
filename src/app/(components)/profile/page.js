@@ -32,7 +32,7 @@ export default function Profile() {
                                 <ul className="list-inline mb-0">
                                     <li className="list-inline-item">
                                         <small className="text-muted">
-                                            <Link href={"#"} className="btn btn-outline-dark btn-sm btn-block"> Create Blog </Link>
+                                            <Link href={"/create-blog"} className="btn btn-outline-dark btn-sm btn-block"> Create Blog </Link>
                                         </small>
                                     </li>
                                     <li className="list-inline-item">

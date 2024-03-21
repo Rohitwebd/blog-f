@@ -6,6 +6,8 @@ import Footer from "./shared/footer";
 import "bootstrap/dist/css/bootstrap.css";
 import BootstrapClient from "./shared/Bootstrapclient";
 import "@fortawesome/fontawesome-free";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +25,7 @@ export default function RootLayout({ children }) {
         {children}
         <BootstrapClient/>
         <Footer />
+        <ToastContainer />
       </body>
 
 
