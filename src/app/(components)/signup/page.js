@@ -2,6 +2,9 @@
 import Link from "next/link";
 import { useFormik } from "formik";
 import { signupSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const initialValues = {
     userName: "",
@@ -12,6 +15,7 @@ const initialValues = {
 
 
 export default function Signup() {
+    const router = useRouter()
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
@@ -22,7 +26,23 @@ export default function Signup() {
                 console.log(
                     values
                 );
-                action.resetForm();
+
+                const onSubmit = async () => {
+
+                    try {
+                        const res = await axios.post('http://localhost:7000/api/auth/register', values)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        console.log(res.data)
+                        router.push("/login")
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(error.response.data.massage, "error massage")
+                    }
+                }
+                onSubmit()
+
+
             },
         });
 

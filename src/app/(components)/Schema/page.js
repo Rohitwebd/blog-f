@@ -23,6 +23,11 @@ export const ResetpasswordSchema = Yup.object({
     .oneOf([Yup.ref("new_password"), null], "Password must match"),
 });
 
+export const ChangepasswordSchema = Yup.object({
+  old_password:Yup.string().required("Please enter your password"),
+  new_password: Yup.string().min(6).required("Please enter your new password"),
+});
+
 export const createblogSchema = Yup.object({
   title: Yup.string().min(4).max(40).required("Please enter your title"),
   Category: Yup.string().required("Please select your blog Category"),

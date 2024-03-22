@@ -26,20 +26,21 @@ export default function Login() {
                 );
 
                 const onSubmit = async () => {
-            
+
                     try {
-                      const res = await axios.post('http://localhost:7000/api/auth/login',values)
-                      toast.success(res.data.message,{theme:"dark",position:"top-center"})
-                      router.push("/profile")
-                      console.log(res.data)
+                        const res = await axios.post('http://localhost:7000/api/auth/login', values)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        router.push("/profile")
+                        console.log(res.data)
+                        action.resetForm();
                     } catch (error) {
-                        toast.error(error.response.data.message)
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
                         console.log(error)
                     }
-                  }
-                  onSubmit()
+                }
+                onSubmit()
 
-                action.resetForm();
+
             },
         });
     return (

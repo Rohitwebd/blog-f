@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useFormik } from "formik";
 import { ResetpasswordSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
+import axios from "axios";
 
 const initialValues = {
     new_password: "",
@@ -19,7 +21,22 @@ export default function Resetpassword() {
                 console.log(
                     values
                 );
-                action.resetForm();
+
+                const onSubmit = async () => {
+
+                    try {
+                        const res = await axios.post('http://localhost:7000/api/user/reset-password', values)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        console.log(res.data)
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                }
+                onSubmit()
+
+
             },
         });
     return (

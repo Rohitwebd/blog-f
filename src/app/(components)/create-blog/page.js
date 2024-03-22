@@ -75,17 +75,31 @@ export default function Createblog() {
                                     ) : null}
 
                                     <label className="labels mt-2">Category</label>
-                                    <input
+                                    {/* <input
                                         className="form-control"
                                         type="Category"
                                         autoComplete="off"
                                         name="Category"
                                         id="Category"
                                         placeholder="Category"
-                                        value={values.userName}
+                                        value={values.Category}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                    />
+                                    /> */}
+                                    <select
+                                        class="form-select"
+                                        aria-label="Default select example"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                    >
+                                        <option selected>Open this select menu</option>
+                                        <option value="tech">Tech</option>
+                                        <option value="travel">Travel</option>
+                                        <option value="lifestyle">Lifestyle</option>
+                                        <option value="food">Food</option>
+                                        <option value="fashion">Fashion</option>
+                                    </select>
+                                    
                                     {errors.Category && touched.Category ? (
                                         <p className="form-error">{errors.Category}</p>
                                     ) : null}

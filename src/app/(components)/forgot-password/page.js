@@ -2,12 +2,18 @@
 import Link from "next/link";
 import { useFormik } from "formik";
 import { ForgotpasswordSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const initialValues = {
     email: ""
 };
 
 export default function Forgotpassword() {
+
+    const router = useRouter()
+
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
             initialValues,
@@ -18,7 +24,23 @@ export default function Forgotpassword() {
                 console.log(
                     values
                 );
-                action.resetForm();
+
+                const onSubmit = async () => {
+            
+                    try {
+                      const res = await axios.post('http://localhost:7000/api/user/forgot-password',values)
+                      toast.success(res.data.message,{theme:"dark",position:"top-center"})
+                      router.push("/reset-password")
+                      console.log(res.data)
+                      action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                  }
+                  onSubmit()
+
+                
             },
         });
     return (
@@ -48,7 +70,7 @@ export default function Forgotpassword() {
                         <p className="form-error">{errors.email}</p>
                     ) : null}
 
-                    <Link href={"/reset-password"}><button className="btn mt-3" type="submit">Submit</button></Link>
+                    <button className="btn mt-3" type="submit">Submit</button>
                 </form>
                 <div className="text-center fs-6">
                     <Link href={"/login"}>Login</Link> or <Link href={"/signup"}>Sign up</Link>

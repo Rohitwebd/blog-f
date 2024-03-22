@@ -1,6 +1,45 @@
+"use client"
 import Link from "next/link";
+import { useFormik } from "formik";
+import { ChangepasswordSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
+import axios from "axios";
+
+const initialValues = {
+    old_password: "",
+    new_password: ""
+};
 
 export default function Changepassword() {
+
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+        useFormik({
+            initialValues,
+            validationSchema: ChangepasswordSchema,
+            validateOnChange: true,
+            validateOnBlur: false,
+            onSubmit: (values, action) => {
+                console.log(
+                    values
+                );
+
+                const onSubmit = async () => {
+
+                    try {
+                        const res = await axios.post('http://localhost:7000/api/user/change-password', values)
+                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(res.data)
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                }
+                onSubmit()
+
+
+            },
+        });
     return (
         <>
             <div className="wrapper">
@@ -10,16 +49,40 @@ export default function Changepassword() {
                 <div className="text-center mt-4 name">
                     change Password
                 </div>
-                <form className="p-3 mt-3">
+                <form className="p-3 mt-3" onSubmit={handleSubmit}>
                     <div className="form-field d-flex align-items-center">
-                        <span className="far fa-user"></span>
-                        <input type="text" name="password" id="pwd" placeholder="Old Password" />
+                        <input
+                            type="password"
+                            autoComplete="off"
+                            name="old_password"
+                            id="old_password"
+                            placeholder="Old Password"
+                            value={values.old_password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
                     </div>
+                    {errors.old_password && touched.old_password ? (
+                        <p className="form-error">{errors.old_password}</p>
+                    ) : null}
+
                     <div className="form-field d-flex align-items-center">
-                        <span className="fas fa-key"></span>
-                        <input type="text" name="password" id="pwd" placeholder="New Password" />
+                        <input
+                            type="password"
+                            autoComplete="off"
+                            name="new_password"
+                            id="new_password"
+                            placeholder="New Password"
+                            value={values.new_password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                        />
                     </div>
-                    <button className="btn mt-3">Submit</button>
+                    {errors.new_password && touched.new_password ? (
+                        <p className="form-error">{errors.new_password}</p>
+                    ) : null}
+
+                    <button className="btn mt-3" type="submit">Submit</button>
                 </form>
                 <div className="text-center fs-6">
                     <Link href={"/login"}>Login</Link> or <Link href={"/signup"}>Sign up</Link>
