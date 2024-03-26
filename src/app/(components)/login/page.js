@@ -31,6 +31,7 @@ export default function Login() {
                         const res = await axios.post('http://localhost:7000/api/auth/login', values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         router.push("/profile")
+                        localStorage.setItem("authToken", res.data.token);
                         console.log(res.data)
                         action.resetForm();
                     } catch (error) {

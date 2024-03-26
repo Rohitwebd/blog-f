@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCross, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 // import {} from '@fortawesome/free-brands-svg-icons'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from "next/navigation";
 
 
 
@@ -12,10 +13,33 @@ import React, { useState } from 'react';
 export default function Header() {
     const pathname = usePathname()
     const [isOpened, setIsOpened] = useState(false);
+    const [isLogin, setisLogin] = useState(false)
+    const router = useRouter()
+
 
     function toggle() {
         setIsOpened(wasOpened => !wasOpened);
     }
+
+    useEffect(() => {
+        const getToken = localStorage.getItem("authToken")
+        console.log(getToken)
+
+
+
+        if (getToken) {
+            setisLogin(true)
+        } else {
+            setisLogin(false)
+        }
+    });
+
+    function  logout (){
+        localStorage.removeItem("authToken")
+        router.push("/")
+    }
+
+
     return (
         <>
             {/* <!-- Start Header/Navigation --> */}
@@ -44,7 +68,19 @@ export default function Header() {
                         </ul>
 
                         <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                            <li><Link className="nav-link" href={"/login"}><img src="images/user.svg" /></Link></li>
+                            <li> {!isLogin ?
+                                <Link className="nav-link" href={"/login"}><img src="images/user.svg" /></Link>
+                                :
+                                <div className="dropdown">
+                                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Rohit
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><Link className="dropdown-item" href={"/create-blog"}>Create Blog</Link></li>
+                                        <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
+                                    </ul>
+                                </div>}
+                            </li>
                             <li><button className="nav-link text-light" onClick={toggle}><FontAwesomeIcon icon={faSearch} /></button></li>
                         </ul>
                     </div>
@@ -62,7 +98,7 @@ export default function Header() {
                                 </div>
                             </div>
                             <div className="col-md-3">
-                               <a className="text-danger fa-2x" onClick={toggle}><FontAwesomeIcon icon={faXmark} /></a> 
+                                <a className="text-danger fa-2x" onClick={toggle}><FontAwesomeIcon icon={faXmark} /></a>
                             </div>
                         </div>
                     </div>

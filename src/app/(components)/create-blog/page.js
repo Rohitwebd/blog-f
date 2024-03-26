@@ -87,12 +87,12 @@ export default function Createblog() {
                                         onBlur={handleBlur}
                                     /> */}
                                     <select
-                                        class="form-select"
+                                        className="form-select"
                                         aria-label="Default select example"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     >
-                                        <option selected>Open this select menu</option>
+                                        <option selected >Open this select menu</option>
                                         <option value="tech">Tech</option>
                                         <option value="travel">Travel</option>
                                         <option value="lifestyle">Lifestyle</option>
