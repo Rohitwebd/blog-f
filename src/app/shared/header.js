@@ -26,7 +26,6 @@ export default function Header() {
         console.log(getToken)
 
 
-
         if (getToken) {
             setisLogin(true)
         } else {
@@ -34,7 +33,7 @@ export default function Header() {
         }
     });
 
-    function  logout (){
+    function logout() {
         localStorage.removeItem("authToken")
         router.push("/")
     }
@@ -76,7 +75,7 @@ export default function Header() {
                                         Rohit
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><Link className="dropdown-item" href={"/create-blog"}>Create Blog</Link></li>
+                                        <li><Link className="dropdown-item" href={"/my-blogs"}> My Blog</Link></li>
                                         <li><button className="dropdown-item" onClick={logout}>Logout</button></li>
                                     </ul>
                                 </div>}

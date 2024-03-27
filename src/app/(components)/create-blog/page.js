@@ -66,7 +66,7 @@ export default function Createblog() {
                                         name="title"
                                         id="title"
                                         placeholder="Title"
-                                        value={values.userName}
+                                        value={values.title}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
@@ -112,7 +112,7 @@ export default function Createblog() {
                                         name="AutherId"
                                         id="AutherId"
                                         placeholder="AutherId"
-                                        value={values.userName}
+                                        value={values.AutherId}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
@@ -129,7 +129,7 @@ export default function Createblog() {
                                         id="Description"
                                         cols="35"
                                         rows="6"
-                                        value={values.userName}
+                                        value={values.Description}
                                         onChange={handleChange}
                                         onBlur={handleBlur} ></textarea>
                                     {errors.Description && touched.Description ? (
