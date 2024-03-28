@@ -2,15 +2,16 @@
 import { useState } from "react";
 import { useFormik } from "formik";
 import { createblogSchema } from "../Schema/page";
+import { toast } from 'react-toastify';
 import blogimage from "../../../../public/images/timelinepic2.jpg"
 import Image from "next/image";
 
 
+
 const initialValues = {
-    title: "",
-    Category: "",
-    AutherId: "",
-    Description: ""
+    blogTitle: "",
+    category: "",
+    blogDescription: ""
 
 };
 
@@ -26,7 +27,20 @@ export default function Createblog() {
                 console.log(
                     values
                 );
-                action.resetForm();
+
+                const onSubmit = async () => {
+
+                    try {
+                        const res = await axios.post('http://localhost:7000/api/blog/create', values)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        console.log(res.data)
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                }
+                onSubmit()
             },
         });
 
@@ -61,17 +75,16 @@ export default function Createblog() {
                                     <label className="labels mt-2">Title</label>
                                     <input
                                         className="form-control"
-                                        type="title"
+                                        type="text"
                                         autoComplete="off"
-                                        name="title"
+                                        name="blogTitle"
                                         id="title"
                                         placeholder="Title"
-                                        value={values.title}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    {errors.title && touched.title ? (
-                                        <p className="form-error">{errors.title}</p>
+                                    {errors.blogTitle && touched.blogTitle ? (
+                                        <p className="form-error">{errors.blogTitle}</p>
                                     ) : null}
 
                                     <label className="labels mt-2">Category</label>
@@ -88,7 +101,9 @@ export default function Createblog() {
                                     /> */}
                                     <select
                                         className="form-select"
+                                        id="category"
                                         aria-label="Default select example"
+                                        value={values.category}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     >
@@ -99,25 +114,9 @@ export default function Createblog() {
                                         <option value="food">Food</option>
                                         <option value="fashion">Fashion</option>
                                     </select>
-                                    
-                                    {errors.Category && touched.Category ? (
-                                        <p className="form-error">{errors.Category}</p>
-                                    ) : null}
 
-                                    <label className="labels mt-2">AutherId</label>
-                                    <input
-                                        className="form-control"
-                                        type="AutherId"
-                                        autoComplete="off"
-                                        name="AutherId"
-                                        id="AutherId"
-                                        placeholder="AutherId"
-                                        value={values.AutherId}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                    />
-                                    {errors.AutherId && touched.AutherId ? (
-                                        <p className="form-error">{errors.AutherId}</p>
+                                    {errors.category && touched.category ? (
+                                        <p className="form-error">{errors.category}</p>
                                     ) : null}
 
                                     <label className="text-black mt-2">Description</label>
@@ -125,15 +124,15 @@ export default function Createblog() {
                                         className="form-control"
                                         type="Description"
                                         autoComplete="off"
-                                        name="Description"
+                                        name="blogDescription"
                                         id="Description"
                                         cols="35"
                                         rows="6"
-                                        value={values.Description}
+                                        value={values.blogDescription}
                                         onChange={handleChange}
                                         onBlur={handleBlur} ></textarea>
-                                    {errors.Description && touched.Description ? (
-                                        <p className="form-error">{errors.Description}</p>
+                                    {errors.blogDescription && touched.blogDescription ? (
+                                        <p className="form-error">{errors.blogDescription}</p>
                                     ) : null}
 
                                 </div>
