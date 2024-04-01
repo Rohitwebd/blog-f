@@ -9,6 +9,7 @@ import Link from "next/link";
 
 
 
+
 export default function Myblog() {
 
     const [data, setData] = useState([])
@@ -26,6 +27,12 @@ export default function Myblog() {
         fetchData()
     }, [])
 
+const deleteblog =(e) =>{
+    const id = e.currentTarget.getAttribute("data-id")
+        console.log("working",id)
+        return confirm('Are you sure?')
+        
+    }
 
     const columns = [
         {
@@ -49,8 +56,8 @@ export default function Myblog() {
             sortable: true,
             cell: row =>
                 <div>
-                    <Link href={"/edit-profile"}><FontAwesomeIcon icon={faPen} className="px-4" /></Link>
-                    <Link href={""}><FontAwesomeIcon icon={faTrash} /></Link>
+                   <span><FontAwesomeIcon icon={faPen} className="px-4" /></span>
+                   <span ><FontAwesomeIcon icon={faTrash} onClick={deleteblog} data-id={row._id}/></span>
                 </div>
         }
     ]
@@ -82,7 +89,7 @@ export default function Myblog() {
             <div className="container mt-5">
                 <div className="row">
                     <div className="text-end">
-                        <input type="text" />
+                        <input type="text" id="search-box" name="search-box"/>
                     </div>
                     <DataTable
                         columns={columns}

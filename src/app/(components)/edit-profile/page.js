@@ -16,7 +16,7 @@ export default function Editprofile() {
 
     const [profile, setProfile] = useState(profilepic);
     function profileChange(f) {
-        console.log(f.target.files,'profile pic');
+        console.log(f.target.files, 'profile pic');
         setProfile(URL.createObjectURL(f.target.files[0]));
     }
 
@@ -25,7 +25,7 @@ export default function Editprofile() {
             <div className="container-fluid profile-bg">
                 <div className="row ">
                     <div className="col-md-12 p-0 text-center">
-                        <Image height={200} width={1400} src={timelinepic} alt="timeline"/>
+                        <Image height={200} width={1400} src={timelinepic} alt="timeline" />
                         <label htmlFor="file" className="btn btn-outline-dark btn-sm">Change cover</label>
                         <input type="file" id="file" onChange={timelineChange} className="d-none" />
                     </div>
@@ -54,25 +54,45 @@ export default function Editprofile() {
                             <div className="row mt-2">
                                 <div className="col-md-6">
                                     <label className="labels">Name</label>
-                                    <input type="text" className="form-control" placeholder="first name" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="first name"
+                                    />
                                 </div>
                                 <div className="col-md-6">
                                     <label className="labels">Surname</label>
-                                    <input type="text" className="form-control" placeholder="surname" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="surname"
+                                    />
                                 </div>
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-12 p-2">
                                     <label className="labels">About</label>
-                                    <input type="text" className="form-control" placeholder="about you" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="about you"
+                                    />
                                 </div>
                                 <div className="col-md-12 p-2">
                                     <label className="labels">Dob</label>
-                                    <input type="text" className="form-control" placeholder="date of birth" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="date of birth"
+                                    />
                                 </div>
                                 <div className="col-md-12 p-2">
                                     <label className="labels">Profile Picture</label>
-                                    <input type="text" className="form-control" placeholder="upload profile pic" />
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="upload profile pic"
+                                    />
                                 </div>
                             </div>
                             <div className="mt-5 text-center">

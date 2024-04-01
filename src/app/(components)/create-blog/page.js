@@ -78,7 +78,7 @@ export default function Createblog() {
                                         type="text"
                                         autoComplete="off"
                                         name="blogTitle"
-                                        id="title"
+                                        id="blogTitle"
                                         placeholder="Title"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -125,7 +125,7 @@ export default function Createblog() {
                                         type="Description"
                                         autoComplete="off"
                                         name="blogDescription"
-                                        id="Description"
+                                        id="blogDescription"
                                         cols="35"
                                         rows="6"
                                         value={values.blogDescription}
