@@ -1,6 +1,32 @@
+"use client"
 import Testimonial from '@/app/shared/testimonal';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+
 
 export default function Food() {
+  const [foodData, setFoodData] = useState([]);
+
+  const getpostdata = async () => {
+
+    const url = 'http://localhost:7000/api/blog/getblog?category=food';
+
+   
+    try {
+      const responseJson = await axios.get(url);
+      const data = (responseJson.data.blogs);
+      console.log(data)
+      setFoodData(data);
+    } catch (err) {
+      console.error(err);
+    }
+
+  };
+
+  useEffect(() => {
+
+    getpostdata();
+  }, []);
     return (
       <>
       {/* <!-- Start Hero Section --> */}
@@ -31,113 +57,24 @@ export default function Food() {
 
           <div className="row">
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-1.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Bern's Steak House</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
+          {foodData.map((food,i) => {
+              return (
+                <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
+                  <div className="post-entry">
+                    <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
+                    <div className="post-content-entry">
+                      <h3><a href="#">{food.blogTitle}</a></h3>  
+                      <div className="meta">
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{food.createdDate}</a></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-2.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Eewak Korean Restaurant</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              );
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-3.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">The Ramban Vegan House</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            })}
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-4.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Maniest Bake & Cake</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-5.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Crush Los Angeles</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-best-restaurant-6.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">The Mike Winery</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-latest-review-img-1.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Grilled Flank Steak with Chimichurri</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-latest-review-img-2.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Mushroom Penne with Walnut Pesto</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/food-blogger-latest-review-img-3.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Garlic Butter White Wine Shrimp Linguine</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>

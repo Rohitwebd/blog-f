@@ -29,7 +29,7 @@ export const ChangepasswordSchema = Yup.object({
 });
 
 export const createblogSchema = Yup.object({
-  blogTitle: Yup.string().min(4).max(40).required("Please enter your title"),
+  blogTitle: Yup.string().required("Please enter your title"),
   category: Yup.string().required("Please select your blog Category"),
   blogDescription: Yup.string().required("Please enter your Blog Description"),
 });

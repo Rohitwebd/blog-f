@@ -107,12 +107,12 @@ export default function Createblog() {
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     >
-                                        <option selected >Open this select menu</option>
-                                        <option value="tech">Tech</option>
-                                        <option value="travel">Travel</option>
-                                        <option value="lifestyle">Lifestyle</option>
-                                        <option value="food">Food</option>
-                                        <option value="fashion">Fashion</option>
+                                        <option value="DEFAULT" >Open this select menu</option>
+                                        <option value="tech">tech</option>
+                                        <option value="travel">travel</option>
+                                        <option value="lifestyle">lifestyle</option>
+                                        <option value="food">food</option>
+                                        <option value="fashion">fashion</option>
                                     </select>
 
                                     {errors.category && touched.category ? (

@@ -1,8 +1,31 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faChevronCircleRight } from "@fortawesome/free-solid-svg-icons";
+"use client"
 import Testimonial from '@/app/shared/testimonal';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function Fashion() {
+  const [fashionData, setFashionData] = useState([]);
+
+  const getpostdata = async () => {
+
+    const url = 'http://localhost:7000/api/blog/getblog?category=fashion';
+
+   
+    try {
+      const responseJson = await axios.get(url);
+      const data = (responseJson.data.blogs);
+      console.log(data)
+      setFashionData(data);
+    } catch (err) {
+      console.error(err);
+    }
+
+  };
+
+  useEffect(() => {
+
+    getpostdata();
+  }, []);
     return (
      <>
       {/* <!-- Start Hero Section --> */}
@@ -32,114 +55,23 @@ export default function Fashion() {
         <div className="container">
 
           <div className="row">
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-1.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
+          {fashionData.map((fashion,i) => {
+              return (
+                <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
+                  <div className="post-entry">
+                    <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
+                    <div className="post-content-entry">
+                      <h3><a href="#">{fashion.blogTitle}</a></h3>  
+                      <div className="meta">
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{fashion.createdDate}</a></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-2.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              );
 
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-3.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-1.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-2.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-3.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-1.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-2.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-sm-6 col-md-4 mb-5">
-              <div className="post-entry">
-                <a href="#" className="post-thumbnail"><img src="images/post-3.jpg" alt="Image" className="img-fluid" /></a>
-                <div className="post-content-entry">
-                  <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                  <div className="meta">
-                    <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            })}
 
           </div>
         </div>

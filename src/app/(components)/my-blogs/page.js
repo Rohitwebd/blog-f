@@ -4,8 +4,7 @@ import DataTable from "react-data-table-component";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { icon } from "@fortawesome/fontawesome-svg-core";
-import Link from "next/link";
+
 
 
 
