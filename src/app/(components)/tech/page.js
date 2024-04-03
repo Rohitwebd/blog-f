@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 
 export default function Tech() {
 
-  const [techData, setTechData] = useState([]);
+  const [techData, setTechData] = useState();
+  const [errormsg ,setErrormsg] = useState()
 
   const getpostdata = async () => {
 
@@ -13,20 +14,21 @@ export default function Tech() {
 
 
     try {
-      const responseJson = await axios.get(url);
-      const data = (responseJson.data.blogs);
-      console.log(data)
+      const response = await axios.get(url);
+      const data = (response.data.blogs);
       setTechData(data);
     } catch (err) {
-      console.error(err);
-    }
+      setErrormsg(err.response.data.massage)
+      console.error(err.response.data.massage);
+      }
+    
 
   };
 
   useEffect(() => {
 
     getpostdata();
-  }, []);
+  }, [errormsg]);
 
   return (
     <>
@@ -43,7 +45,7 @@ export default function Tech() {
             </div>
             <div className="col-lg-7">
               <div className="hero-img-wrap ">
-                <img src="images/3252880.jpg" className="img-fluid" />
+                <img src="images/illustration-full.png" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -57,7 +59,7 @@ export default function Tech() {
         <div className="container">
 
           <div className="row">
-            {techData.map((tech,i) => {
+            { techData?techData.map((tech,i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
@@ -70,10 +72,11 @@ export default function Tech() {
                     </div>
                   </div>
                 </div>
-
-              );
-            })}
-
+              )
+  
+            }):
+            <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
+            }
           </div>
         </div>
       </div>

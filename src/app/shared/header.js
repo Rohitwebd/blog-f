@@ -44,7 +44,7 @@ export default function Header() {
             {/* <!-- Start Header/Navigation --> */}
             <nav className="custom-navbar navbar navbar-expand-md" arial-label="Furni navigation bar">
 
-                <div className="container">
+                <div className="container-fluid">
                     <Link className="navbar-brand" href={"/"}>Furni<span>.</span></Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,7 @@ export default function Header() {
                                 :
                                 <div className="dropdown">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Rohit
+                                        My Profile
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><Link className="dropdown-item" href={"/my-blogs"}> My Blog</Link></li>

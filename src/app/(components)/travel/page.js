@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export default function Travel() {
-	const [travelData, setTravelData] = useState([]);
+	const [travelData, setTravelData] = useState();
+	const [errormsg ,setErrormsg] = useState()
 
 	const getpostdata = async () => {
   
@@ -14,10 +15,11 @@ export default function Travel() {
 	  try {
 		const responseJson = await axios.get(url);
 		const data = (responseJson.data.blogs);
-		console.log(data)
+		// console.log(data)
 		setTravelData(data);
 	  } catch (err) {
-		console.error(err);
+		setErrormsg(err.response.data.massage)
+		console.error(err.response.data.massage);
 	  }
   
 	};
@@ -25,7 +27,7 @@ export default function Travel() {
 	useEffect(() => {
   
 	  getpostdata();
-	}, []);
+	}, [errormsg]);
     return (
 		<>
 		{/* <!-- Start Hero Section --> */}
@@ -41,7 +43,7 @@ export default function Travel() {
 			  </div>
 			  <div className="col-lg-7">
 				<div className="hero-img-wrap">
-				  <img src="images/couch.png" className="img-fluid" />
+				  <img src="images/travel-removebg-preview.png" className="img-fluid" />
 				</div>
 			  </div>
 			</div>
@@ -53,10 +55,9 @@ export default function Travel() {
 		{/* <!-- Start Blog Section --> */}
 		<div className="blog-section">
 		  <div className="container">
-  
 			<div className="row">
   
-			{travelData.map((travel,i) => {
+			{ travelData ?travelData.map((travel,i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
@@ -69,10 +70,10 @@ export default function Travel() {
                     </div>
                   </div>
                 </div>
-
               );
-
-            })}
+            }):
+			<div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
+			}
 			</div>
 		  </div>
 		</div>

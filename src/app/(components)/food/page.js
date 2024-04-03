@@ -5,7 +5,8 @@ import { useEffect, useState } from 'react';
 
 
 export default function Food() {
-  const [foodData, setFoodData] = useState([]);
+  const [foodData, setFoodData] = useState();
+  const [errormsg ,setErrormsg] = useState()
 
   const getpostdata = async () => {
 
@@ -18,15 +19,16 @@ export default function Food() {
       console.log(data)
       setFoodData(data);
     } catch (err) {
-      console.error(err);
-    }
-
-  };
-
-  useEffect(() => {
-
-    getpostdata();
-  }, []);
+      setErrormsg(err.response.data.massage)
+      console.error(err.response.data.massage);
+      }
+    
+    };
+    
+    useEffect(() => {
+    
+      getpostdata();
+    }, [errormsg]);
     return (
       <>
       {/* <!-- Start Hero Section --> */}
@@ -42,7 +44,7 @@ export default function Food() {
             </div>
             <div className="col-lg-7">
               <div className="hero-img-wrap">
-                <img src="images/couch.png" className="img-fluid" />
+                <img src="images/food-blogger-removebg-preview.png" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -57,7 +59,7 @@ export default function Food() {
 
           <div className="row">
 
-          {foodData.map((food,i) => {
+          {foodData?foodData.map((food,i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
@@ -73,7 +75,8 @@ export default function Food() {
 
               );
 
-            })}
+            }):
+            <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>}
 
 
           </div>
