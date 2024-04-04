@@ -10,12 +10,6 @@ export function middleware(request) {
             new URL('/', request.url)
         )
     }
-
-    if (login) {
-        return NextResponse.redirect(
-            new URL('/', request.url)
-        )
-    }
 }
 
 
