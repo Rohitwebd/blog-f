@@ -6,11 +6,11 @@ import { useEffect, useState } from 'react';
 export default function Tech() {
 
   const [techData, setTechData] = useState();
-  const [errormsg ,setErrormsg] = useState()
+  const [errormsg, setErrormsg] = useState()
 
   const getpostdata = async () => {
 
-    const url = 'http://localhost:7000/api/blog/getblog?category=tech';
+    const url = `${process.env.BASE_URL}blog/getblog?category=tech`;
 
 
     try {
@@ -20,8 +20,8 @@ export default function Tech() {
     } catch (err) {
       setErrormsg(err.response.data.massage)
       console.error(err.response.data.massage);
-      }
-    
+    }
+
 
   };
 
@@ -59,7 +59,7 @@ export default function Tech() {
         <div className="container">
 
           <div className="row">
-            { techData?techData.map((tech,i) => {
+            {techData ? techData.map((tech, i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
@@ -73,9 +73,9 @@ export default function Tech() {
                   </div>
                 </div>
               )
-  
-            }):
-            <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
+
+            }) :
+              <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
             }
           </div>
         </div>

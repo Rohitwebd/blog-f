@@ -23,9 +23,9 @@ export default function Resetpassword() {
                 );
 
                 const onSubmit = async () => {
-
+                    const url = `${process.env.BASE_URL}user/reset-password`;
                     try {
-                        const res = await axios.post('http://localhost:7000/api/user/reset-password', values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         console.log(res.data)
                         action.resetForm();

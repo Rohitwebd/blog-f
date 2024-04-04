@@ -9,7 +9,7 @@ export default function Blog() {
 
   const getpostdata = async () => {
 
-    const url = 'http://localhost:7000/api/blog/getblog';
+    const url = `${process.env.BASE_URL}blog/getblog`;
 
 
     try {
@@ -56,7 +56,7 @@ export default function Blog() {
 
           <div className="row">
 
-          {allblogData.map((allblog,i) => {
+            {allblogData.map((allblog, i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">

@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 export default function Lifestyle() {
 
   const [LifestyleData, setLifestyleData] = useState();
-  const [errormsg ,setErrormsg] = useState()
+  const [errormsg, setErrormsg] = useState()
 
   const getpostdata = async () => {
 
-    const url = 'http://localhost:7000/api/blog/getblog?category=lifestyle';
+    const url = `${process.env.BASE_URL}blog/getblog?category=lifestyle`;
 
-   
+
     try {
       const responseJson = await axios.get(url);
       const data = (responseJson.data.blogs);
@@ -21,16 +21,16 @@ export default function Lifestyle() {
     } catch (err) {
       setErrormsg(err.response.data.massage)
       console.error(err.response.data.massage);
-      }
-    
-    };
-    
-    useEffect(() => {
-    
-      getpostdata();
-    }, [errormsg]);
-    return (
-      <>
+    }
+
+  };
+
+  useEffect(() => {
+
+    getpostdata();
+  }, [errormsg]);
+  return (
+    <>
       {/* <!-- Start Hero Section --> */}
       <div className="hero">
         <div className="container">
@@ -59,13 +59,13 @@ export default function Lifestyle() {
 
           <div className="row">
 
-          {LifestyleData?LifestyleData.map((lifestyle,i) => {
+            {LifestyleData ? LifestyleData.map((lifestyle, i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
                     <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
                     <div className="post-content-entry">
-                      <h3><a href="#">{lifestyle.blogTitle}</a></h3>  
+                      <h3><a href="#">{lifestyle.blogTitle}</a></h3>
                       <div className="meta">
                         <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{lifestyle.createdDate}</a></span>
                       </div>
@@ -75,8 +75,8 @@ export default function Lifestyle() {
 
               );
 
-            }):
-            <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>}
+            }) :
+              <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>}
 
 
           </div>
@@ -86,8 +86,8 @@ export default function Lifestyle() {
 
 
       {/* <!-- Start Testimonial Slider --> */}
-      <Testimonial/>
+      <Testimonial />
       {/* <!-- End Testimonial Slider --> */}
-     </>
-    );
-  }
+    </>
+  );
+}

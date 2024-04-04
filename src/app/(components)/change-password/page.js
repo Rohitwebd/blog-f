@@ -24,9 +24,10 @@ export default function Changepassword() {
                 );
 
                 const onSubmit = async () => {
+                    const url = `${process.env.BASE_URL}user/change-password`;
 
                     try {
-                        const res = await axios.post('http://localhost:7000/api/user/change-password', values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.massage, { theme: "dark", position: "top-center" })
                         console.log(res.data)
                         action.resetForm();

@@ -30,8 +30,10 @@ export default function Createblog() {
 
                 const onSubmit = async () => {
 
+                    const url = `${process.env.BASE_URL}blog/create`;
+
                     try {
-                        const res = await axios.post('http://localhost:7000/api/blog/create', values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         console.log(res.data)
                         action.resetForm();

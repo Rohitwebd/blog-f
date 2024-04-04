@@ -28,9 +28,9 @@ export default function Signup() {
                 );
 
                 const onSubmit = async () => {
-
+                    const url = `${process.env.BASE_URL}auth/register`;
                     try {
-                        const res = await axios.post('http://localhost:7000/api/auth/register', values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         console.log(res.data)
                         router.push("/login")

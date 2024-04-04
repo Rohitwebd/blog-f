@@ -27,9 +27,10 @@ export default function Forgotpassword() {
                 );
 
                 const onSubmit = async () => {
+                    const url = `${process.env.BASE_URL}user/forgot-password`;
             
                     try {
-                      const res = await axios.post('http://localhost:7000/api/user/forgot-password',values)
+                      const res = await axios.post(url,values)
                       toast.success(res.data.message,{theme:"dark",position:"top-center"})
                       router.push("/reset-password")
                       console.log(res.data)

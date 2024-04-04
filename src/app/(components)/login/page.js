@@ -5,6 +5,8 @@ import { loginSchema } from "../Schema/page";
 import { toast } from 'react-toastify';
 import axios from "axios";
 import { useRouter } from "next/navigation";
+require('dotenv').config()
+const base_url = process.env.BASE_URL
 
 const initialValues = {
     email: "",
@@ -26,9 +28,10 @@ export default function Login() {
                 );
 
                 const onSubmit = async () => {
+                    const url = `${process.env.BASE_URL}auth/login`;
 
                     try {
-                        const res = await axios.post('http://localhost:7000/api/auth/login', values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         router.push("/profile")
                         localStorage.setItem("authToken", res.data.token);
