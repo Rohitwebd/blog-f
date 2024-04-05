@@ -20,12 +20,12 @@ export default function Footer() {
                                 <div className="subscription-form">
                                     <h3 className="d-flex align-items-center"><span className="me-1"><img src="images/envelope-outline.svg" alt="Image" className="img-fluid" /></span><span>Subscribe to Newsletter</span></h3>
 
-                                    <form action="#" className="row g-3">
+                                    <form className="row g-3">
                                         <div className="col-auto">
-                                            <input type="text" className="form-control" placeholder="Enter your name" />
+                                            <input type="text" autoComplete="off" id="name" className="form-control" placeholder="Enter your Name" />
                                         </div>
                                         <div className="col-auto">
-                                            <input type="email" className="form-control" placeholder="Enter your email" />
+                                            <input type="email" autoComplete="off" id="email" className="form-control" placeholder="Enter your Email" />
                                         </div>
                                         <div className="col-auto">
                                             <button className="btn btn-primary">

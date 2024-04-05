@@ -1,6 +1,7 @@
 "use client"
 import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 
 export default function Lifestyle() {
@@ -67,7 +68,7 @@ export default function Lifestyle() {
                     <div className="post-content-entry">
                       <h3><a href="#">{lifestyle.blogTitle}</a></h3>
                       <div className="meta">
-                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{lifestyle.createdDate}</a></span>
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(lifestyle.createdDate).format('ll')}</a></span>
                       </div>
                     </div>
                   </div>

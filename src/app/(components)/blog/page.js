@@ -2,6 +2,7 @@
 import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 export default function Blog() {
 
@@ -10,8 +11,7 @@ export default function Blog() {
   const getpostdata = async () => {
 
     const url = `${process.env.BASE_URL}blog/getblog`;
-
-
+  
     try {
       const responseJson = await axios.get(url);
       const data = (responseJson.data.blogs);
@@ -64,7 +64,7 @@ export default function Blog() {
                     <div className="post-content-entry">
                       <h3><a href="#">{allblog.blogTitle}</a></h3>
                       <div className="meta">
-                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{allblog.createdDate}</a></span>
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(allblog.createdDate).format('ll')}</a></span>
                       </div>
                     </div>
                   </div>

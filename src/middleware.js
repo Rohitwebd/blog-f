@@ -1,22 +1,25 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server';
 
 
-export function middleware(request) {
+export default function middleware(req) {
+const loggedin = true
+ const { pathname } = req.nextUrl;
 
-    const user = false
-    console.log("middleware work")
-    if (!user) {
-        return NextResponse.redirect(
-            new URL('/', request.url)
-        )
-    }
+// console.log(pathname)
+
+ if (loggedin && pathname === '/login' || pathname === '/signup') {
+   console.log("login page")
+   return NextResponse.redirect(new URL('/', req.url));
+ }
+
+
+ if (!loggedin && pathname !== '/login' && pathname !== '/signup') {
+   console.log("not login")
+   return NextResponse.redirect(new URL('/profile', req.url));
+ }
 }
 
 
 export const config = {
-    matcher: [
-        '/profile',
-        '/edit-profile',
-        '/create-password'
-    ]
-}
+ matcher: ['/profile', "/create-blog","/signup" , "/change-password"]
+};

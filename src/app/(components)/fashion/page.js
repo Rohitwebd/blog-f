@@ -2,6 +2,7 @@
 import Testimonial from '@/app/shared/testimonal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 export default function Fashion() {
   const [fashionData, setFashionData] = useState();
@@ -65,7 +66,7 @@ export default function Fashion() {
                     <div className="post-content-entry">
                       <h3><a href="#">{fashion.blogTitle}</a></h3>
                       <div className="meta">
-                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{fashion.createdDate}</a></span>
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(fashion.createdDate).format('ll')}</a></span>
                       </div>
                     </div>
                   </div>

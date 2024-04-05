@@ -1,6 +1,7 @@
 "use client"
 import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 
 
@@ -67,7 +68,7 @@ export default function Food() {
                     <div className="post-content-entry">
                       <h3><a href="#">{food.blogTitle}</a></h3>
                       <div className="meta">
-                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{food.createdDate}</a></span>
+                        <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(food.createdDate).format('ll')}</a></span>
                       </div>
                     </div>
                   </div>
