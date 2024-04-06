@@ -3,9 +3,10 @@ import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
+import Link from "next/link";
+
 
 export default function Blog() {
-
   const [allblogData, setAllblogData] = useState([]);
 
   const getpostdata = async () => {
@@ -62,7 +63,8 @@ export default function Blog() {
                   <div className="post-entry">
                     <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
                     <div className="post-content-entry">
-                      <h3><a href="#">{allblog.blogTitle}</a></h3>
+                      <h3><Link href={`/blog/${allblog._id}`}>{allblog.blogTitle}</Link></h3>
+                      
                       <div className="meta">
                         <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(allblog.createdDate).format('ll')}</a></span>
                       </div>
