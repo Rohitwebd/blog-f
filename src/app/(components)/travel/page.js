@@ -3,10 +3,12 @@ import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import Loader from '@/loader';
 
 export default function Travel() {
 	const [travelData, setTravelData] = useState();
 	const [errormsg, setErrormsg] = useState()
+	const [isLoading, setIsLoading] = useState(true);
 
 	const getpostdata = async () => {
 
@@ -71,7 +73,7 @@ export default function Travel() {
 										</div>
 									</div>
 								</div>
-							);
+							)
 						}) :
 							<div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
 						}

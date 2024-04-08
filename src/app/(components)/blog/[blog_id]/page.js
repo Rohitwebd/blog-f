@@ -7,7 +7,7 @@ export default function Blogdetails(params) {
     const [getblogData, setgetblogData] = useState([]);
 
     const getpostdata = async () => {
-        const url = `${process.env.BASE_URL}blog/${params._id}`;
+        const url = `${process.env.BASE_URL}blog/blog/${params._id}`;
 
         try {
             const responseJson = await axios.get(url);
@@ -26,8 +26,8 @@ export default function Blogdetails(params) {
     }, []);
     return (
         <>
-            <div>
-                <img height={300} width={1400} src="/images/blogdetails-img.jpg" alt="blog-img" />
+            <div className="text-center">
+                <img height={300} width={1200} src="/images/homepage.png" alt="blog-img" />
             </div>
 
             <div className="blog-section">
@@ -45,7 +45,6 @@ export default function Blogdetails(params) {
                                     </div>
 
                                     <h4 className="py-3">Description</h4>
-
                                     <p>
                                         {getblog.blogDescription}
                                     </p>
