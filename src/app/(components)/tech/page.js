@@ -9,8 +9,7 @@ export default function Tech() {
 
 
   const [techData, setTechData] = useState();
-  const [errormsg, setErrormsg] = useState()
-  const [isLoading, setIsLoading] = useState(true);
+  const [getError, setgetError] = useState()
 
   const getpostdata = async () => {
 
@@ -21,9 +20,8 @@ export default function Tech() {
       const response = await axios.get(url);
       const data = (response.data.blogs);
       setTechData(data);
-      setIsLoading(false);
     } catch (err) {
-      setErrormsg(err.response.data.massage)
+      setgetError(err.response.data.massage)
       console.error(err.response.data.massage);
     }
 
@@ -33,7 +31,7 @@ export default function Tech() {
   useEffect(() => {
 
     getpostdata();
-  }, [errormsg]);
+  }, [getError]);
 
   return (
     <>
@@ -61,7 +59,7 @@ export default function Tech() {
 
       {/* <!-- Start Blog Section --> */}
 
-      <Blogdata blogdata={techData} />
+      <Blogdata blogdata={techData} errordata={getError} />
 
       {/* <!-- End Blog Section -->	 */}
 

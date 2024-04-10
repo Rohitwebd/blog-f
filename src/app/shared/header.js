@@ -25,7 +25,6 @@ export default function Header() {
         const getToken = localStorage.getItem("authToken")
         console.log(getToken)
 
-
         if (getToken) {
             setisLogin(true)
         } else {
@@ -37,6 +36,9 @@ export default function Header() {
         localStorage.removeItem("authToken")
         router.push("/")
     }
+
+    // serch api ============
+
 
 
     return (
@@ -93,7 +95,10 @@ export default function Header() {
                         <div className="row py-2">
                             <div className="col-md-9">
                                 <div className="boxContent">
-                                    <input className="search-bar" placeholder="  Search" />
+                                    <input
+                                        className="search-bar"
+                                        placeholder="  Search"
+                                    />
                                 </div>
                             </div>
                             <div className="col-md-3">

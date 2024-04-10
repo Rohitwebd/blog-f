@@ -12,7 +12,7 @@ export default function Blog() {
   const getpostdata = async () => {
 
     const url = `${process.env.BASE_URL}blog/getblog`;
-  
+
     try {
       const responseJson = await axios.get(url);
       const data = (responseJson.data.blogs);
@@ -23,7 +23,7 @@ export default function Blog() {
     }
 
   };
-  
+
   useEffect(() => {
 
     getpostdata();
@@ -64,7 +64,7 @@ export default function Blog() {
                     <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
                     <div className="post-content-entry">
                       <h3><Link href={`/blog/${allblog._id}`}>{allblog.blogTitle}</Link></h3>
-                      
+
                       <div className="meta">
                         <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(allblog.createdDate).format('ll')}</a></span>
                       </div>

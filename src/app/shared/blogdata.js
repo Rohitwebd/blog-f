@@ -3,17 +3,18 @@ import { useEffect, useState } from 'react';
 import Loader from '@/loader';
 
 export default function Blogdata(props) {
-    console.log(props)
     const [isLoading, setIsLoading] = useState(true);
     const [getData, setGetdata] = useState()
-    const [errormsg, setErrormsg] = useState()
+    const [getError, setErrormsg] = useState()
 
     useEffect(() => {
         setGetdata(props.blogdata)
-if(getData){
-    setIsLoading(false)
-}
+        // console.log(props.errordata)
+        setErrormsg(props.errordata)
 
+        if (getData || getError) {
+            setIsLoading(false)
+        }
     });
 
 
@@ -49,7 +50,7 @@ if(getData){
                                 )
 
                             }) :
-                                <div className='alert alert-danger' role='alert'><h4>{errormsg}</h4></div>
+                                <div className='alert alert-danger' role='alert'><h4>{getError}</h4></div>
                             }
                         </div>
                     </div>
