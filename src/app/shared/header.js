@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCross, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 // import {} from '@fortawesome/free-brands-svg-icons'
@@ -14,6 +14,8 @@ export default function Header() {
     const pathname = usePathname()
     const [isOpened, setIsOpened] = useState(false);
     const [isLogin, setisLogin] = useState(false)
+    const [isDisable, setIsDisable] = useState(true)
+    const [searchValue, setSearchValue] = useState()
     const router = useRouter()
 
 
@@ -37,7 +39,21 @@ export default function Header() {
         router.push("/")
     }
 
-    // serch api ============
+    const handleChange = (e) => {
+        console.log(e.target.value)
+        const searchTerm = e.target.value
+        setSearchValue(searchTerm)
+        if (searchTerm.length >= 2) {
+            setIsDisable(false)
+        } else {
+            setIsDisable(true)
+        }
+
+    }
+    const redirectToSearch = ()=>{
+        router.push(`/search?q=${searchValue}`)
+    }
+    // ============= search api ============
 
 
 
@@ -96,12 +112,15 @@ export default function Header() {
                             <div className="col-md-9">
                                 <div className="boxContent">
                                     <input
-                                        className="search-bar"
-                                        placeholder="  Search"
+                                        name="search"
+                                        className="form-control me-2"
+                                        placeholder="Search"
+                                        onChange={handleChange}
                                     />
                                 </div>
                             </div>
                             <div className="col-md-3">
+                                <button type="button" className="btn btn-secondary me-2" disabled={isDisable} onClick={redirectToSearch}>Search</button>
                                 <a className="text-danger fa-2x" onClick={toggle}><FontAwesomeIcon icon={faXmark} /></a>
                             </div>
                         </div>
