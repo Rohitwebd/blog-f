@@ -5,6 +5,7 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import Loader from '@/loader';
 import Blogdata from '@/app/shared/blogdata';
+import travelImg from '../../../../public/images/travelimg.jpg'
 
 export default function Travel() {
 	const [travelData, setTravelData] = useState();
@@ -57,7 +58,7 @@ export default function Travel() {
 
 
 			{/* <!-- Start Blog Section --> */}
-			<Blogdata blogdata={travelData} errordata={getError} />
+			<Blogdata blogdata={travelData} errordata={getError} blogimg={travelImg} />
 			{/* <!-- End Blog Section -->	 */}
 
 

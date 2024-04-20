@@ -3,6 +3,7 @@ import Testimonial from '@/app/shared/testimonal';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Blogdata from '@/app/shared/blogdata';
+import fashionImg from '../../../../public/images/fashionimg.jpg'
 
 export default function Fashion() {
   const [fashionData, setFashionData] = useState();
@@ -54,7 +55,7 @@ export default function Fashion() {
 
 
       {/* <!-- Start Blog Section --> */}
-      <Blogdata blogdata={fashionData} errordata={getError}  />
+      <Blogdata blogdata={fashionData} errordata={getError} blogimg={fashionImg}  />
       {/* <!-- End Blog Section -->	 */}
 
 

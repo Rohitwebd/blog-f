@@ -4,6 +4,7 @@ import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
+import foodImg from '../../../../public/images/foodimg.jpg'
 
 
 export default function Food() {
@@ -56,7 +57,7 @@ export default function Food() {
 
 
       {/* <!-- Start Blog Section --> */}
-      <Blogdata blogdata={foodData} errordata={getError} />
+      <Blogdata blogdata={foodData} errordata={getError} blogimg={foodImg} />
       {/* <!-- End Blog Section -->	 */}
 
 

@@ -3,6 +3,7 @@ import Blogdata from '@/app/shared/blogdata';
 import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import lifestyleImg from '../../../../public/images/lifestyleimg.jpg'
 
 export default function Lifestyle() {
 
@@ -55,7 +56,7 @@ export default function Lifestyle() {
 
 
       {/* <!-- Start Blog Section --> */}
-      <Blogdata blogdata={LifestyleData} errordata={getError} />
+      <Blogdata blogdata={LifestyleData} errordata={getError} blogimg={lifestyleImg} />
       {/* <!-- End Blog Section -->	 */}
 
 

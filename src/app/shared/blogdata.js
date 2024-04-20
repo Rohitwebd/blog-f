@@ -38,7 +38,7 @@ export default function Blogdata(props) {
                                 return (
                                     <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                                         <div className="post-entry">
-                                            <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
+                                            <a href="#" className="post-thumbnail"><img src={props?.blogimg?.src} alt="Image" className="img-fluid" /></a>
                                             <div className="post-content-entry">
                                                 <h3><a href="#">{data.blogTitle}</a></h3>
                                                 <div className="meta">

@@ -3,6 +3,7 @@ import Testimonial from '@/app/shared/testimonal';
 import axios from 'axios';
 import Blogdata from '@/app/shared/blogdata';
 import { useEffect, useState } from 'react';
+import techImg from '../../../../public/images/techimg.jpg'
 
 
 export default function Tech() {
@@ -59,7 +60,7 @@ export default function Tech() {
 
       {/* <!-- Start Blog Section --> */}
 
-      <Blogdata blogdata={techData} errordata={getError} />
+      <Blogdata blogdata={techData} errordata={getError} blogimg={techImg} />
 
       {/* <!-- End Blog Section -->	 */}
 

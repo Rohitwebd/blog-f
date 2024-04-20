@@ -19,7 +19,7 @@ export default function Blog() {
       console.log(data)
       setAllblogData(data);
     } catch (err) {
-      console.error(err);
+      console.error(err.response.data.massage);
     }
 
   };
