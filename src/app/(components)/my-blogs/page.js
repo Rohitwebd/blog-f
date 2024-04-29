@@ -27,12 +27,28 @@ export default function Myblog() {
         fetchData()
     }, [])
 
-const deleteblog =(e) =>{
-    const id = e.currentTarget.getAttribute("data-id")
-        console.log("working",id)
+    const deleteblog = (e) => {
+        const id = e.currentTarget.getAttribute("data-id")
+        console.log("working", id)
         return confirm('Are you sure?')
-        
     }
+
+
+    const deleteData = async () => {
+        const url = `${process.env.BASE_URL}blog/delete/${id}`;
+        const response = await fetch('',
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: null
+            });
+
+        const data = await response.json();
+        console.log(data);
+    };
+    deleteData();
 
     const columns = [
         {
@@ -56,8 +72,8 @@ const deleteblog =(e) =>{
             sortable: true,
             cell: row =>
                 <div>
-                   <span><FontAwesomeIcon icon={faPen} className="px-4" /></span>
-                   <span ><FontAwesomeIcon icon={faTrash} onClick={deleteblog} data-id={row._id}/></span>
+                    <span><FontAwesomeIcon icon={faPen} className="px-4" /></span>
+                    <span ><FontAwesomeIcon icon={faTrash} onClick={deleteblog} data-id={row._id} /></span>
                 </div>
         }
     ]
@@ -89,7 +105,7 @@ const deleteblog =(e) =>{
             <div className="container mt-5">
                 <div className="row">
                     <div className="text-end">
-                        <input type="text" id="search-box" name="search-box"/>
+                        <input type="text" id="search-box" name="search-box" />
                     </div>
                     <DataTable
                         columns={columns}
