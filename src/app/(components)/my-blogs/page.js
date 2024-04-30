@@ -4,6 +4,8 @@ import DataTable from "react-data-table-component";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2'
+import Link from "next/link";
 
 
 
@@ -11,6 +13,7 @@ import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function Myblog() {
 
+    const Swal = require('sweetalert2')
     const [data, setData] = useState([])
 
     useEffect(() => {
@@ -27,28 +30,39 @@ export default function Myblog() {
         fetchData()
     }, [])
 
-    const deleteblog = (e) => {
+    // const deleteblog = (e) => {
+    //     const id = e.currentTarget.getAttribute("data-id")
+    //     console.log("working", id)
+    //     return confirm('Are you sure?')
+    // }
+
+
+    const deleteData = async (e) => {
         const id = e.currentTarget.getAttribute("data-id")
         console.log("working", id)
-        return confirm('Are you sure?')
-    }
-
-
-    const deleteData = async () => {
-        const url = `${process.env.BASE_URL}blog/delete/${id}`;
-        const response = await fetch('',
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: null
+        const url = `${process.env.BASE_URL}blog/blog/${id}`;
+        try {
+            const response = await axios.delete(url);
+            console.log(response.data.blogs)
+            Swal.fire({
+                title: "Do you want to delete the Blog?",
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
             });
-
-        const data = await response.json();
-        console.log(data);
+        } catch (error) {
+            console.error(error.message)
+        }
     };
-    deleteData();
+
+
+
 
     const columns = [
         {
@@ -72,8 +86,8 @@ export default function Myblog() {
             sortable: true,
             cell: row =>
                 <div>
-                    <span><FontAwesomeIcon icon={faPen} className="px-4" /></span>
-                    <span ><FontAwesomeIcon icon={faTrash} onClick={deleteblog} data-id={row._id} /></span>
+                    <span><Link href={`/edit-blog?blogid=${row._id}`}><FontAwesomeIcon icon={faPen} className="px-4" /></Link></span>
+                    <span ><FontAwesomeIcon icon={faTrash} onClick={deleteData} data-id={row._id} /></span>
                 </div>
         }
     ]
