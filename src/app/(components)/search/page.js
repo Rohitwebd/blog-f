@@ -21,7 +21,6 @@ export default function Search() {
 
     const url = `${process.env.BASE_URL}blog/search?q=${myParam}`;
 
-
     try {
       const response = await axios.get(url);
       const data = (response.data.blogs);
@@ -31,7 +30,6 @@ export default function Search() {
       setgetError(err.response.data.massage)
       console.error(err.response.data.massage);
     }
-
 
   };
 

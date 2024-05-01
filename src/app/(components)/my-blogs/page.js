@@ -36,30 +36,34 @@ export default function Myblog() {
     //     return confirm('Are you sure?')
     // }
 
-
-    const deleteData = async (e) => {
+    const deleteData = (e) => {
         const id = e.currentTarget.getAttribute("data-id")
         console.log("working", id)
-        const url = `${process.env.BASE_URL}blog/blog/${id}`;
-        try {
-            const response = await axios.delete(url);
-            console.log(response.data.blogs)
-            Swal.fire({
-                title: "Do you want to delete the Blog?",
-                showCancelButton: true,
-                confirmButtonText: "Delete",
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    Swal.fire("Saved!", "", "success");
-                } else if (result.isDenied) {
-                    Swal.fire("Changes are not saved", "", "info");
-                }
-            });
-        } catch (error) {
-            console.error(error.message)
-        }
-    };
+        Swal.fire({
+            title: "Do you want to delete the Blog?",
+            showCancelButton: true,
+            confirmButtonText: "Delete",
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                const handleDelete = async () => {
+                    const url = `${process.env.BASE_URL}blog/blog/${id}`;
+                    try {
+                        const response = await axios.delete(url);
+                        console.log(response.data.blogs)
+                        Swal.fire("Blog Deleted!", "", "success");
+                    } catch (error) {
+                        console.error(error.message)
+                    }
+                };
+                handleDelete()
+                console.log("done",id)
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+    }
+
 
 
 

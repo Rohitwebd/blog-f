@@ -35,7 +35,7 @@ export default function Createblog() {
                     try {
                         const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
-                        console.log(res.data)
+                        console.log(res.data.message)
                         action.resetForm();
                     } catch (error) {
                         toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
@@ -77,7 +77,7 @@ export default function Createblog() {
                                     <label className="labels mt-2">Title</label>
                                     <input
                                         className="form-control"
-                                        type="text"
+                                        type="blogTitle"
                                         autoComplete="off"
                                         name="blogTitle"
                                         id="blogTitle"
