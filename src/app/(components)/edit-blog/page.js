@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { createblogSchema } from "../Schema/page";
 import { toast } from 'react-toastify';
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import blogimage from "../../../../public/images/timelinepic2.jpg"
 import Image from "next/image";
 import axios from 'axios';
@@ -20,7 +21,8 @@ const initialValues = {
 
 export default function Editblog() {
 
-    const [searchData, setUpdateData] = useState();
+    const router = useRouter()
+    const [updateData, setUpdateData] = useState();
     const [getError, setgetError] = useState()
 
     const searchParams = useSearchParams();
@@ -34,8 +36,8 @@ export default function Editblog() {
 
         try {
             const response = await axios.get(url);
-            console.log(response, 'jjjj')
             const data = (response.data.blog);
+            console.log(response.data.blog, 'get update blog')
             setUpdateData(data)
 
         } catch (err) {
@@ -54,7 +56,8 @@ export default function Editblog() {
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
-            initialValues,
+            initialValues:updateData || initialValues,
+            enableReinitialize:true,
             validationSchema: createblogSchema,
             validateOnChange: true,
             validateOnBlur: false,
@@ -68,9 +71,10 @@ export default function Editblog() {
                     const url = `${process.env.BASE_URL}blog/blog/${myParam}`;
 
                     try {
-                        const res = await axios.post(url, values)
-                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
-                        console.log(res.data.message)
+                        const res = await axios.patch(url, values)
+                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
+                        router.push("/my-blogs")
+                        console.log(res,"response")
                         action.resetForm();
                     } catch (error) {
                         toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
@@ -119,6 +123,7 @@ export default function Editblog() {
                                         placeholder="Title"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
+                                        value={values.blogTitle}
                                     />
                                     {errors.blogTitle && touched.blogTitle ? (
                                         <p className="form-error">{errors.blogTitle}</p>

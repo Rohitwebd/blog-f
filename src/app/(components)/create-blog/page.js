@@ -5,6 +5,7 @@ import { createblogSchema } from "../Schema/page";
 import { toast } from 'react-toastify';
 import blogimage from "../../../../public/images/timelinepic2.jpg"
 import Image from "next/image";
+import axios from "axios";
 
 
 
@@ -34,8 +35,8 @@ export default function Createblog() {
 
                     try {
                         const res = await axios.post(url, values)
-                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
-                        console.log(res.data.message)
+                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(res.data.massage)
                         action.resetForm();
                     } catch (error) {
                         toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
