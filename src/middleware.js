@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 
 export default function middleware(req) {
-const loggedin = false
+const loggedin = true
  const { pathname } = req.nextUrl;
 
 // console.log(pathname)
@@ -21,5 +21,5 @@ const loggedin = false
 
 
 export const config = {
- matcher: ['/login','/signup' ,'/change-password']
+ matcher: ['/login','/signup' ,'/change-password','/profile','/my-blogs','/create-blog']
 };

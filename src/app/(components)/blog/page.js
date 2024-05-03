@@ -6,7 +6,7 @@ import moment from 'moment';
 import Link from "next/link";
 
 
-export default function Blog() {
+export default function Blog( ) {
   const [allblogData, setAllblogData] = useState([]);
 
   const getpostdata = async () => {

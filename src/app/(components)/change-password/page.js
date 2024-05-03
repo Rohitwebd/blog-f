@@ -28,8 +28,8 @@ export default function Changepassword() {
 
                     try {
                         const res = await axios.post(url, values)
-                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
-                        console.log(res.data)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        console.log(res.data.message)
                         action.resetForm();
                     } catch (error) {
                         toast.error(error.response.data.massage, { theme: "dark", position: "top-center" })

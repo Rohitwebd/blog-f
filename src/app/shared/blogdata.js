@@ -1,6 +1,7 @@
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import Loader from '@/loader';
+import Link from 'next/link';
 
 export default function Blogdata(props) {
     const [isLoading, setIsLoading] = useState(true);
@@ -32,15 +33,15 @@ export default function Blogdata(props) {
             ) : (
                 <div className="blog-section">
                     <div className="container">
-
                         <div className="row">
+
                             {getData ? getData.map((data, i) => {
                                 return (
                                     <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                                         <div className="post-entry">
                                             <a href="#" className="post-thumbnail"><img src={props?.blogimg?.src} alt="Image" className="img-fluid" /></a>
                                             <div className="post-content-entry">
-                                                <h3><a href="#">{data.blogTitle}</a></h3>
+                                                <h3><Link href={`/blog/${data._id}`}>{data.blogTitle}</Link></h3>
                                                 <div className="meta">
                                                     <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">{moment(data.createdDate).format('ll')}</a></span>
                                                 </div>
