@@ -2,6 +2,12 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import Loader from '@/loader';
 import Link from 'next/link';
+import techImg from '../../../public/images/techimg.jpg'
+import fashionImg from '../../../public/images/fashionimg.jpg'
+import foodImg from '../../../public/images/foodimg.jpg'
+import lifestyleImg from '../../../public/images/lifestyleimg.jpg'
+import travelImg from '../../../public/images/travelimg.jpg'
+import defaulImg from '../../../public/images/travelimg.jpg'
 
 export default function Blogdata(props) {
     const [isLoading, setIsLoading] = useState(true);
@@ -18,6 +24,17 @@ export default function Blogdata(props) {
         }
     });
 
+    function getImageByCat(cat){
+        const imagestatus = {
+            tech: techImg.src,
+            fashion: fashionImg.src,
+            travel: travelImg.src,
+            food: foodImg.src,
+            lifestyle: lifestyleImg.src,
+            default: defaulImg.src
+        }
+        return imagestatus[cat] || imagestatus['default']
+    }
 
     return (
         <>
@@ -39,7 +56,7 @@ export default function Blogdata(props) {
                                 return (
                                     <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                                         <div className="post-entry">
-                                            <a href="#" className="post-thumbnail"><img src={props?.blogimg?.src} alt="Image" className="img-fluid" /></a>
+                                            <a href="#" className="post-thumbnail"><img src={getImageByCat(data?.category)} alt="Image" className="img-fluid" /></a>
                                             <div className="post-content-entry">
                                                 <h3><Link href={`/blog/${data._id}`}>{data.blogTitle}</Link></h3>
                                                 <div className="meta">

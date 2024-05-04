@@ -4,10 +4,16 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import Link from "next/link";
+import techImg from '../../../../public/images/techimg.jpg'
+import fashionImg from '../../../../public/images/fashionimg.jpg'
+import foodImg from '../../../../public/images/foodimg.jpg'
+import lifestyleImg from '../../../../public/images/lifestyleimg.jpg'
+import travelImg from '../../../../public/images/travelimg.jpg'
+import defaulImg from '../../../../public/images/travelimg.jpg'
 
-
-export default function Blog( ) {
+export default function Blog() {
   const [allblogData, setAllblogData] = useState([]);
+
 
   const getpostdata = async () => {
 
@@ -28,6 +34,19 @@ export default function Blog( ) {
 
     getpostdata();
   }, []);
+
+  function getImageByCat(cat){
+    const imagestatus = {
+        tech: techImg.src,
+        fashion: fashionImg.src,
+        travel: travelImg.src,
+        food: foodImg.src,
+        lifestyle: lifestyleImg.src,
+        default: defaulImg.src
+    }
+    return imagestatus[cat] || imagestatus['default']
+}
+  
   return (
     <>
       {/* <!-- Start Hero Section --> */}
@@ -54,14 +73,13 @@ export default function Blog( ) {
       {/* <!-- Start Blog Section --> */}
       <div className="blog-section">
         <div className="container">
-
           <div className="row">
 
             {allblogData.map((allblog, i) => {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
-                    <a href="#" className="post-thumbnail"><img src="images/post-01-free-img.jpg" alt="Image" className="img-fluid" /></a>
+                    <a href="#" className="post-thumbnail"><img src={getImageByCat(allblog?.category)} alt="Image" className="img-fluid" /></a>
                     <div className="post-content-entry">
                       <h3><Link href={`/blog/${allblog._id}`}>{allblog.blogTitle}</Link></h3>
 

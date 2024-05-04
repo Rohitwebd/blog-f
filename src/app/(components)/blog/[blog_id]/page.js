@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import moment from "moment";
+import travelImg from '../../../../../public/images/travelimg.jpg'
 
 export default function Blogdetails({ params }) {
     const [getblogData, setgetblogData] = useState([]);
@@ -38,7 +39,7 @@ export default function Blogdetails({ params }) {
 
                     <div className="col-md-12 mb-5">
                         <div className="post-entry">
-                            <a href="#" className="post-thumbnail"><img src="../images/post-2.jpg" alt="Image" className="img-fluid" /></a>
+                            <a href="#" className="post-thumbnail"><img src={travelImg.src} alt="Image" className="img-fluid" /></a>
                             <div className="post-content-entry">
                                 <h2><a href="#">{getblogData.blogTitle}</a></h2>
                                 <div className="meta">
@@ -46,7 +47,7 @@ export default function Blogdetails({ params }) {
                                 </div>
                             </div>
 
-                            <h4 className="py-3">Description</h4>
+                            <h3 className="py-3">Description</h3>
                             <p>
                                 {getblogData.blogDescription}
                             </p>
