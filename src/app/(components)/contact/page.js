@@ -17,7 +17,7 @@ export default function Contact() {
                       </svg>
                     </div> 
                     <div className="service-contents">
-                      <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+                      <p>510 Narmada Road line . Khalghat, India 454552</p>
                     </div>
                   </div> 
                 </div>

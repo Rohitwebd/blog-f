@@ -33,3 +33,8 @@ export const createblogSchema = Yup.object({
   category: Yup.string().required("Please select your blog Category"),
   blogDescription: Yup.string().required("Please enter your Blog Description"),
 });
+
+export const ContactSchema = Yup.object({
+  old_password:Yup.string().required("Please enter your password"),
+  new_password: Yup.string().min(6).required("Please enter your new password"),
+});

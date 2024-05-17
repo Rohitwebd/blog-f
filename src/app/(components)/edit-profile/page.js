@@ -87,11 +87,11 @@ export default function Editprofile() {
                                     />
                                 </div>
                                 <div className="col-md-12 p-2">
-                                    <label className="labels">Profile Picture</label>
+                                    <label className="labels">E-mail</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        placeholder="upload profile pic"
+                                        placeholder="Enter your e-mail"
                                     />
                                 </div>
                             </div>
