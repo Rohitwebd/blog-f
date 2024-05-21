@@ -79,7 +79,7 @@ export default function Blog() {
               return (
                 <div key={i} className="col-12 col-sm-6 col-md-4 mb-5">
                   <div className="post-entry">
-                    <a href="#" className="post-thumbnail"><img src={getImageByCat(allblog?.category)} alt="Image" className="img-fluid" /></a>
+                    <a href="#" className="post-thumbnail"><img src={getImageByCat(allblog?.category)} alt="Image" className="img-fluid zoom" /></a>
                     <div className="post-content-entry">
                       <h3><Link href={`/blog/${allblog._id}`}>{allblog.blogTitle}</Link></h3>
 

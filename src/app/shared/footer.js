@@ -4,11 +4,55 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useFormik } from "formik";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { NewsletterSchema } from "../(components)/Schema/page";
+
+
+require('dotenv').config()
+const base_url = process.env.BASE_URL
+
+const initialValues = {
+    name: "",
+    email: "",
+};
 export default function Footer() {
+
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+        useFormik({
+            initialValues,
+            validationSchema: NewsletterSchema,
+            validateOnChange: true,
+            validateOnBlur: false,
+            onSubmit: (values, action) => {
+                console.log(
+                    values
+                );
+
+                const onSubmit = async () => {
+                    const url = `${process.env.BASE_URL}newsletter/new`;
+
+                    try {
+                        const res = await axios.post(url, values)
+                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(res.data)
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                }
+                onSubmit()
+
+
+            },
+        });
+
     const pathname = usePathname()
     console.log(pathname)
-    if (pathname !== "/login" && pathname !== "/signup" 
-    && pathname !== "/forgot-password" && pathname !== "/reset-password" && pathname !== "/profile") {
+    if (pathname !== "/login" && pathname !== "/signup"
+        && pathname !== "/forgot-password" && pathname !== "/reset-password" && pathname !== "/profile") {
 
         return (
             <>
@@ -20,15 +64,33 @@ export default function Footer() {
                                 <div className="subscription-form">
                                     <h3 className="d-flex align-items-center"><span className="me-1"><img src="images/envelope-outline.svg" alt="Image" className="img-fluid" /></span><span>Subscribe to Newsletter</span></h3>
 
-                                    <form className="row g-3">
+                                    <form className="row g-3" onSubmit={handleSubmit}>
                                         <div className="col-auto">
-                                            <input type="text" autoComplete="off" id="name" className="form-control" placeholder="Enter your Name" />
+                                            <input 
+                                            type="text" 
+                                            autoComplete="off" 
+                                            id="name" 
+                                            className="form-control" 
+                                            placeholder="Enter your Name"
+                                            value={values.name}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            />
                                         </div>
                                         <div className="col-auto">
-                                            <input type="email" autoComplete="off" id="email" className="form-control" placeholder="Enter your Email" />
+                                            <input
+                                                type="email"
+                                                autoComplete="off"
+                                                id="email"
+                                                className="form-control"
+                                                placeholder="Enter your Email"
+                                                value={values.email}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                            />
                                         </div>
                                         <div className="col-auto">
-                                            <button className="btn btn-primary">
+                                            <button className="btn btn-primary" type="submit">
                                                 <FontAwesomeIcon icon={faPaperPlane} />
                                             </button>
                                         </div>
