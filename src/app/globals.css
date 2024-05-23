@@ -1179,7 +1179,6 @@ body {
 
 .zoom {
   padding: 50px;
-  border-radius: 20px;
   transition: transform .2s; /* Animation */
   width: 700px;
   height: 200px;
