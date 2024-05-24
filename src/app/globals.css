@@ -1,6 +1,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
+:root{
+  --themecolour: #124E66;
+}
+
 
 body {
   overflow-x: hidden;
@@ -35,7 +39,7 @@ a.more {
 }
 
 .custom-navbar {
-  background: #3b5d50 !important;
+  background: var(--themecolour) !important;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -135,7 +139,7 @@ a.more {
 }
 
 .hero {
-  background: #3b5d50;
+  background: var(--themecolour);
   padding: calc(4rem - 30px) 0 0rem 0;
 }
 
@@ -257,8 +261,8 @@ a.more {
 }
 
 .btn.btn-primary {
-  background: #3b5d50;
-  border-color: #3b5d50;
+  background: var(--themecolour);
+  border-color: var(--themecolour);
 }
 
 .btn.btn-primary:hover {
@@ -527,7 +531,7 @@ a.more {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  border: 2px solid #3b5d50;
+  border: 2px solid var(--themecolour);
   position: absolute;
   left: 0;
   top: 8px;
@@ -652,7 +656,7 @@ a.more {
 }
 
 .testimonial-slider-wrap #testimonial-nav>span:hover {
-  background: #3b5d50;
+  background: var(--themecolour);
   color: #ffffff;
 }
 
@@ -709,7 +713,7 @@ a.more {
 
 .testimonial-slider-wrap .tns-nav button:hover:before,
 .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
-  background-color: #3b5d50;
+  background-color: var(--themecolour);
 }
 
 .before-footer-section {
@@ -799,7 +803,7 @@ a.more {
 .footer-section .subscription-form h3 {
   font-size: 18px;
   font-weight: 500;
-  color: #3b5d50;
+  color: var(--themecolour);
 }
 
 .footer-section .subscription-form .form-control {
@@ -813,7 +817,7 @@ a.more {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #3b5d50;
+  border-color: var(--themecolour);
   -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -867,7 +871,7 @@ a.more {
   font-size: 32px;
   font-weight: 500;
   text-decoration: none;
-  color: #3b5d50;
+  color: var(--themecolour);
 }
 
 .footer-section .custom-social li {
@@ -882,12 +886,12 @@ a.more {
   line-height: 40px;
   display: inline-block;
   background: #dce5e4;
-  color: #3b5d50;
+  color: var(--themecolour);
   border-radius: 50%;
 }
 
 .footer-section .custom-social li a:hover {
-  background: #3b5d50;
+  background: var(--themecolour);
   color: #ffffff;
 }
 
@@ -914,7 +918,7 @@ a.more {
   outline: none;
   -webkit-box-shadow: none;
   box-shadow: none;
-  border-color: #3b5d50;
+  border-color: var(--themecolour);
   -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
 }
@@ -947,7 +951,7 @@ a.more {
   height: 50px;
   line-height: 50px;
   text-align: center;
-  background: #3b5d50;
+  background: var(--themecolour);
   margin-right: 20px;
   color: #ffffff;
 }
@@ -985,7 +989,7 @@ textarea {
 }
 
 .site-blocks-table tbody tr:first-child td {
-  border-top: 1px solid #3b5d50 !important;
+  border-top: 1px solid var(--themecolour) !important;
 }
 
 .site-blocks-table .btn {
@@ -1010,12 +1014,12 @@ textarea {
 }
 
 .text-primary {
-  color: #3b5d50 !important;
+  color: var(--themecolour) !important;
 }
 
 .thankyou-icon {
   position: relative;
-  color: #3b5d50;
+  color: var(--themecolour);
 }
 
 .thankyou-icon:before {
@@ -1103,7 +1107,7 @@ body {
   box-shadow: none;
   width: 100%;
   height: 40px;
-  background-color: #3b5d50;
+  background-color: var(--themecolour);
   color: #fff;
   border-radius: 25px;
   box-shadow: 3px 3px 3px #b1b1b1,
@@ -1112,7 +1116,7 @@ body {
 }
 
 .wrapper .btn:hover {
-  background-color: #3b5d50;
+  background-color: var(--themecolour);
 }
 
 .wrapper a {
@@ -1142,7 +1146,7 @@ body {
   border-radius: 50px;
 }
 .bg-colour{
-  background-color: #3b5d50;
+  background-color: var(--themecolour);
 }
 
 /* ================== profile dashbord =================== */
@@ -1159,7 +1163,6 @@ body {
 
 body {
   background: #654ea3;
-  
   min-height: 100vh;
   overflow-x:hidden;
 }

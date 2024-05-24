@@ -21,5 +21,5 @@ const loggedin = true
 
 
 export const config = {
- matcher: ['/login','/signup' ,'/change-password','/profile','/my-blogs','/create-blog']
+ matcher: ['/signup' ,'/change-password','/profile','/my-blogs','/create-blog']
 };
