@@ -32,7 +32,7 @@ export default function Forgotpassword() {
                     try {
                       const res = await axios.post(url,values)
                       toast.success(res.data.message,{theme:"dark",position:"top-center"})
-                      router.push("/reset-password")
+                    //   router.push("/reset-password")
                       console.log(res.data)
                       action.resetForm();
                     } catch (error) {

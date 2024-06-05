@@ -24,7 +24,7 @@ export const ResetpasswordSchema = Yup.object({
 });
 
 export const ChangepasswordSchema = Yup.object({
-  old_password:Yup.string().required("Please enter your password"),
+  old_password: Yup.string().required("Please enter your password"),
   new_password: Yup.string().min(6).required("Please enter your new password"),
 });
 
@@ -35,7 +35,7 @@ export const createblogSchema = Yup.object({
 });
 
 export const ContactSchema = Yup.object({
-  old_password:Yup.string().required("Please enter your "),
+  old_password: Yup.string().required("Please enter your "),
   new_password: Yup.string().min(6).required("Please enter your"),
 });
 
