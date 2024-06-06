@@ -17,10 +17,10 @@ export const ForgotpasswordSchema = Yup.object({
 });
 
 export const ResetpasswordSchema = Yup.object({
-  new_password: Yup.string().min(6).required("Please enter your password"),
-  confirm_password: Yup.string()
+  newPassword: Yup.string().min(6).required("Please enter your password"),
+  confirmPassword: Yup.string()
     .required()
-    .oneOf([Yup.ref("new_password"), null], "Password must match"),
+    .oneOf([Yup.ref("newPassword"), null], "Password must match"),
 });
 
 export const ChangepasswordSchema = Yup.object({

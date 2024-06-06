@@ -12,6 +12,7 @@ import { useSearchParams } from 'next/navigation'
 
 export default function ResetPassword() {
     const [tokenStatus, setTokenStatus] = useState('')
+    const [userId, setUserId] = useState()
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
     const reseturl = `http://localhost:7000/api/user/reset-password?token=${token}`
@@ -23,6 +24,7 @@ export default function ResetPassword() {
                     .then(function (response) {
                         console.log(response.data.status);
                         setTokenStatus(true)
+                        setUserId(response.data.userId)
 
 
                         // toast.success(response.data.message, { theme: "dark", position: "top-center" })
@@ -46,8 +48,8 @@ export default function ResetPassword() {
     const router = useRouter()
     const url = "http://localhost:7000/api/user/reset-password"
     const initValues = {
-        new_password: "",
-        confirm_password: "",
+        newPassword: "",
+        confirmPassword: "",
     }
     // const resetSchema = Yup.object({
     //     newpassword: Yup.string().min(6).required("Please enter Password"),
@@ -58,6 +60,7 @@ export default function ResetPassword() {
             initialValues: initValues,
             validationSchema: ResetpasswordSchema,
             onSubmit: (values, action) => {
+                values.userId = userId
                 console.log(values);
                 const options = {
                     method: 'POST',
@@ -97,43 +100,43 @@ export default function ResetPassword() {
                 <div className="wrapper">
                     <>
                         <div className="logo">
-                            <img src="./images/profile.png" alt="" />
+                            <img src="images/bird_2.jpg" alt="" />
                         </div>
                         <div className="text-center mt-4 name">
-                            Furni<span>.</span>
+                            Reset Password
                         </div>
                         <form onSubmit={handleSubmit} className="p-3 mt-3">
                             <div className="form-field d-flex align-items-center">
-                                <label htmlFor="newpassword" className="input-label"></label>
+                                <label htmlFor="newPassword" className="input-label"></label>
                                 <input
                                     type="password"
                                     autoComplete="off"
-                                    name="newpassword"
-                                    id="newpassword"
+                                    name="newPassword"
+                                    id="newPassword"
                                     placeholder="Enter new password"
-                                    value={values.new_password}
+                                    value={values.newPassword}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
                             </div>
-                            {errors.new_password && touched.new_password ? (
-                                <p className="form-error">{errors.new_password}</p>
+                            {errors.newPassword && touched.newPassword ? (
+                                <p className="form-error">{errors.newPassword}</p>
                             ) : null}
                             <div className="form-field d-flex align-items-center">
-                                <label htmlFor="confirmpassword" className="input-label"></label>
+                                <label htmlFor="confirmPassword" className="input-label"></label>
                                 <input
                                     type="password"
                                     autoComplete="off"
-                                    name="confirmpassword"
-                                    id="confirmpassword"
+                                    name="confirmPassword"
+                                    id="confirmPassword"
                                     placeholder="Enter confirm password"
-                                    value={values.confirm_password}
+                                    value={values.confirmPassword}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
                             </div>
-                            {errors.confirm_password && touched.confirm_password ? (
-                                <p className="form-error">{errors.confirm_password}</p>
+                            {errors.confirmPassword && touched.confirmPassword ? (
+                                <p className="form-error">{errors.confirmPassword}</p>
                             ) : null}
                             <button type="submit" className="btn mt-3">Submit</button>
                         </form>
