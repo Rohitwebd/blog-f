@@ -2,9 +2,21 @@
 import React, { useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { EditProfileSchema } from "../Schema/page";
 import timelineimage from "../../../../public/images/timelinepic2.jpg"
 import profilepic from "../../../../public/images/defultprofile.png"
 import Image from "next/image";
+import { useFormik } from "formik";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+const initialValues = {
+    firstname: "",
+    surname: "",
+    about: "",
+    dob: "",
+    email: ""
+};
 
 export default function Editprofile() {
 
@@ -20,6 +32,35 @@ export default function Editprofile() {
         setProfile(URL.createObjectURL(f.target.files[0]));
     }
 
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+        useFormik({
+            initialValues,
+            validationSchema: EditProfileSchema,
+            validateOnChange: true,
+            validateOnBlur: false,
+            onSubmit: (values, action) => {
+                console.log(
+                    values
+                );
+
+                const onSubmit = async () => {
+                    const url = `${process.env.BASE_URL}`;
+
+                    try {
+                        const res = await axios.post(url, values)
+                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
+                        console.log(res.data.message)
+                        action.resetForm();
+                    } catch (error) {
+                        toast.error(error.response.data.massage, { theme: "dark", position: "top-center" })
+                        console.log(error)
+                    }
+                }
+                onSubmit()
+
+
+            },
+        });
     return (
         <>
             <div className="container-fluid profile-bg">
@@ -47,58 +88,104 @@ export default function Editprofile() {
                     </div>
 
                     <div className="col-md-5 border-right">
-                        <div className="p-3 py-5">
-                            <div className="d-flex justify-content-between align-items-center mb-3">
-                                <h4 className="text-right">Profile Settings</h4>
+                        <form onSubmit={handleSubmit}>
+                            <div className="p-3 py-5">
+                                <div className="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 className="text-right">Profile Settings</h4>
+                                </div>
+                                <div className="row mt-2">
+                                    <div className="col-md-6">
+                                        <label className="labels">Name</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            name="firstname"
+                                            id="firstname"
+                                            placeholder="first name"
+                                            value={values.userName}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.firstname && touched.firstname ? (
+                                            <p className="form-error">{errors.firstname}</p>
+                                        ) : null}
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label className="labels">Surname</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="surname"
+                                            name="surname"
+                                            id="surname"
+                                            value={values.surname}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.surname && touched.surname ? (
+                                            <p className="form-error">{errors.surname}</p>
+                                        ) : null}
+                                    </div>
+
+                                </div>
+                                <div className="row mt-3">
+                                    <div className="col-md-12 p-2">
+                                        <label className="labels">About</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="about you"
+                                            name="about"
+                                            id="about"
+                                            value={values.about}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.about && touched.about ? (
+                                            <p className="form-error">{errors.about}</p>
+                                        ) : null}
+                                    </div>
+                                    <div className="col-md-12 p-2">
+                                        <label className="labels">Dob</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="date of birth"
+                                            name="dob"
+                                            id="dob"
+                                            value={values.dob}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                        {errors.dob && touched.dob ? (
+                                            <p className="form-error">{errors.dob}</p>
+                                        ) : null}
+                                    </div>
+
+                                    <div className="col-md-12 p-2">
+                                        <label className="labels">E-mail</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder="Enter your e-mail"
+                                            name="email"
+                                            id="email"
+                                            value={values.email}
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                        />
+                                    </div>
+
+                                    {errors.email && touched.email ? (
+                                        <p className="form-error">{errors.email}</p>
+                                    ) : null}
+
+                                </div>
+                                <div className="mt-5 text-center">
+                                    <button className="btn btn-primary profile-button" type="submit">Save Profile</button>
+                                </div>
                             </div>
-                            <div className="row mt-2">
-                                <div className="col-md-6">
-                                    <label className="labels">Name</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="first name"
-                                    />
-                                </div>
-                                <div className="col-md-6">
-                                    <label className="labels">Surname</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="surname"
-                                    />
-                                </div>
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-md-12 p-2">
-                                    <label className="labels">About</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="about you"
-                                    />
-                                </div>
-                                <div className="col-md-12 p-2">
-                                    <label className="labels">Dob</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="date of birth"
-                                    />
-                                </div>
-                                <div className="col-md-12 p-2">
-                                    <label className="labels">E-mail</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Enter your e-mail"
-                                    />
-                                </div>
-                            </div>
-                            <div className="mt-5 text-center">
-                                <button className="btn btn-primary profile-button" type="button">Save Profile</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

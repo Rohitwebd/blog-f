@@ -1,33 +1,32 @@
 "use client"
+import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Profile() {
 
-    // const [profileData, setProfileData] = useState();
-    // const [getError, setgetError] = useState()
-  
-    // const getpostdata = async () => {
-  
-    //   const url = `${process.env.BASE_URL}user/profile/65b8e781d8bf59794d9b50a3`;
-  
-  
-    //   try {
-    //     const response = await axios.get(url);
-    //     const data = (response.data.blogs);
-    //     setProfileData(data);
-    //   } catch (err) {
-    //     setgetError(err.response.data.massage)
-    //     console.error(err.response.data.massage);
-    //   }
+    const [profileData, setProfileData] = useState();
+    const [getError, setgetError] = useState()
+
+    
+    const getpostdata = async () => {
+      const url = `${process.env.BASE_URL}user/profile/65b8e781d8bf59794d9b50a3`;
+      try {
+        const response = await axios.get(url);
+        console.log(response.data.profile)
+        setProfileData(response.data);
+      } catch (err) {
+        setgetError(err.response.data.message)
+        console.error(err.response.data.message);
+      }
   
   
-    // };
+    };
   
-    // useEffect(() => {
+    useEffect(() => {
   
-    //   getpostdata();
-    // }, [getError]);
+      getpostdata();
+    }, [getError]);
 
     return (
         <>

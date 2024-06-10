@@ -42,3 +42,11 @@ export const ContactSchema = Yup.object({
 export const NewsletterSchema = Yup.object({
   email: Yup.string().email().required("Please enter your email"),
 });
+
+export const EditProfileSchema = Yup.object({
+  firstname: Yup.string().min(2).max(25).required("Please enter your name"),
+  surname: Yup.string().min(2).max(25).required("Please enter your surname"),
+  about: Yup.string().min(2).max(25).required("Please enter about section"),
+  dob:Yup.string().min(2).max(25).required("Please enter your birth date"),
+  email: Yup.string().email().required("Please enter your email"),
+});
