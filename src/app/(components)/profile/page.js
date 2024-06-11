@@ -8,24 +8,25 @@ export default function Profile() {
     const [profileData, setProfileData] = useState();
     const [getError, setgetError] = useState()
 
-    
+
     const getpostdata = async () => {
-      const url = `${process.env.BASE_URL}user/profile/65b8e781d8bf59794d9b50a3`;
-      try {
-        const response = await axios.get(url);
-        console.log(response.data.profile)
-        setProfileData(response.data);
-      } catch (err) {
-        setgetError(err.response.data.message)
-        console.error(err.response.data.message);
-      }
-  
-  
+        const url = `${process.env.BASE_URL}user/profile/65b8e781d8bf59794d9b50a3`;
+        try {
+            const response = await axios.get(url);
+            const data = response?.data?.profile?.[0]
+            console.log(data)
+            setProfileData(data);
+        } catch (err) {
+            setgetError(err.response.data.message)
+            console.error(err.response.data.message);
+        }
+
+
     };
-  
+
     useEffect(() => {
-  
-      getpostdata();
+
+        getpostdata();
     }, [getError]);
 
     return (
@@ -40,12 +41,13 @@ export default function Profile() {
                                     <div className="row">
                                         <div className="col-md-5">
                                             <div className="profile mr-3">
-                                                <img src="images/rohit-profile.jpg" alt="..." width="130" className="rounded mb-2 img-thumbnail" />
+                                                <img src={profileData?.profilePicture} alt="..." width="130" className="rounded mb-2 img-thumbnail" />
                                             </div>
                                         </div>
                                         <div className="col-md-7">
                                             <div className="media-body mb-5 text-white">
-                                                <h4 className="mt-0 mb-2"> Rohit Kewat</h4>
+                                                <h4 className="mt-0 mb-2">
+                                                    {profileData?.userId?.firstname}     {profileData?.userId?.surname}</h4>
                                                 <p className="small mb-4 py-0"><i className="fas fa-map-marker-alt mr-2"></i> Khalghat </p>
                                             </div>
                                         </div>
@@ -53,7 +55,7 @@ export default function Profile() {
                                 </div>
                             </div>
                             <div className="bg-light d-flix py-5 px-5">
-                                <Link href={"/edit-profile"} className="btn btn-outline-dark btn-sm btn-block"> Edit profile </Link>
+                                <Link href={`/edit-profile?userId=${profileData?.userId?._id}`} className="btn btn-outline-dark btn-sm btn-block"> Edit profile </Link>
                             </div>
                             <div className="bg-light p-4 d-flex justify-content-end text-center">
                                 <ul className="list-inline mb-0">
@@ -72,9 +74,7 @@ export default function Profile() {
                             <div className="px-4 py-3">
                                 <h5 className="mb-0">About</h5>
                                 <div className="p-4 rounded shadow-sm bg-light">
-                                    <p className="font-italic mb-0">Web Developer</p>
-                                    <p className="font-italic mb-0">Lives in India</p>
-                                    <p className="font-italic mb-0">Photographer</p>
+                                    <p className="font-italic mb-0">{profileData?.about}</p>
                                 </div>
                             </div>
                             <div className="py-4 px-4">

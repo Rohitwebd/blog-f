@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { EditProfileSchema } from "../Schema/page";
@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const initialValues = {
     firstname: "",
@@ -31,6 +32,38 @@ export default function Editprofile() {
         console.log(f.target.files, 'profile pic');
         setProfile(URL.createObjectURL(f.target.files[0]));
     }
+
+    const router = useRouter()
+    const [updateData, setUpdateData] = useState();
+    const [getError, setgetError] = useState()
+
+    const searchParams = useSearchParams();
+    const myParam = searchParams.get("userId");
+    console.log(myParam, "search value")
+
+
+    const getupdatedata = async () => {
+
+        const url = `${process.env.BASE_URL}user/profile/${myParam}`;
+
+        try {
+            const response = await axios.get(url);
+            const data = (response.data);
+            console.log(response.data, 'get update profile')
+            setUpdateData(data)
+
+        } catch (err) {
+            setgetError(err.response.data.message)
+            console.error(err.response.data.message);
+        }
+
+
+    };
+
+    useEffect(() => {
+
+        getupdatedata();
+    }, []);
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -102,7 +135,7 @@ export default function Editprofile() {
                                             name="firstname"
                                             id="firstname"
                                             placeholder="first name"
-                                            value={values.userName}
+                                            value={values.firstname}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                         />
