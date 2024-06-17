@@ -77,15 +77,16 @@ export default function Editprofile() {
                 );
 
                 const onSubmit = async () => {
-                    const url = `${process.env.BASE_URL}`;
+                    const url = `${process.env.BASE_URL}user/profile/${myParam}`;
 
                     try {
-                        const res = await axios.post(url, values)
-                        toast.success(res.data.message, { theme: "dark", position: "top-center" })
-                        console.log(res.data.message)
+                        const res = await axios.patch(url, values)
+                        toast.success(res.data.massage, { theme: "dark", position: "top-center" })
+                        router.push("/profile")
+                        console.log(res,"response")
                         action.resetForm();
                     } catch (error) {
-                        toast.error(error.response.data.massage, { theme: "dark", position: "top-center" })
+                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
                         console.log(error)
                     }
                 }
@@ -115,7 +116,7 @@ export default function Editprofile() {
 
 
                             <span className="font-weight-bold p-2">Rohit Kewat</span>
-                            <span className="text-black-50">rohitwebd@gamil.com</span>
+                            <span className="text-black-50">rohitwebd@gmail.com</span>
 
                         </div>
                     </div>

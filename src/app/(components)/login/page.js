@@ -16,6 +16,7 @@ const initialValues = {
 
 
 export default function Login() {
+    axios.defaults.withCredentials = true
     const router = useRouter()
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -35,11 +36,11 @@ export default function Login() {
                         const res = await axios.post(url, values)
                         toast.success(res.data.message, { theme: "dark", position: "top-center" })
                         router.push("/profile")
-                        localStorage.setItem("authToken", res.data.token);
+                        // localStorage.setItem("authToken", res.data.token);
                         console.log(res.data)
                         action.resetForm();
                     } catch (error) {
-                        toast.error(error.response.data.message, { theme: "dark", position: "top-center" })
+                        // toast.error(error.data.message, { theme: "dark", position: "top-center" })
                         console.log(error)
                     }
                 }

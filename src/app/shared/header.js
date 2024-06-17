@@ -6,6 +6,8 @@ import { faCross, faSearch, faXmark } from '@fortawesome/free-solid-svg-icons';
 // import {} from '@fortawesome/free-brands-svg-icons'
 import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 
 
@@ -24,10 +26,10 @@ export default function Header() {
     }
 
     useEffect(() => {
-        const getToken = localStorage.getItem("authToken")
+        const getToken = Cookies.get('jwt')
         console.log(getToken)
 
-        if (getToken) {
+        if (!getToken) {
             setisLogin(true)
         } else {
             setisLogin(false)
@@ -35,7 +37,15 @@ export default function Header() {
     });
 
     function logout() {
-        localStorage.removeItem("authToken")
+        Cookies.remove('jwt',{ path: '',domain:'http://localhost:3000' })
+        // localStorage.removeItem("authToken")
+        axios.get("http://localhost:7000/api/user/logout")
+            .then((response) => {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         router.push("/")
     }
 
@@ -50,7 +60,7 @@ export default function Header() {
         }
 
     }
-    const redirectToSearch = ()=>{
+    const redirectToSearch = () => {
         router.push(`/search?q=${searchValue}`)
     }
     // ============= search api ============
