@@ -77,13 +77,13 @@ export default function Editprofile() {
                 );
 
                 const onSubmit = async () => {
-                    const url = `${process.env.BASE_URL}user/profile/${myParam}`;
+                    const url = `${process.env.BASE_URL}user/profile`;
 
                     try {
-                        const res = await axios.patch(url, values)
+                        const res = await axios.post(url, values)
                         toast.success(res.data.massage, { theme: "dark", position: "top-center" })
                         router.push("/profile")
-                        console.log(res,"response")
+                        console.log(res, "response")
                         action.resetForm();
                     } catch (error) {
                         toast.error(error.response.data.message, { theme: "dark", position: "top-center" })

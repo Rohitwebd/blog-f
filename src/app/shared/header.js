@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 
 
 
@@ -26,7 +27,7 @@ export default function Header() {
     }
 
     useEffect(() => {
-        const getToken = Cookies.get('jwt')
+        const getToken = Cookies.get("jwt")
         console.log(getToken)
 
         if (!getToken) {
@@ -37,16 +38,17 @@ export default function Header() {
     });
 
     function logout() {
-        Cookies.remove('jwt',{ path: '',domain:'http://localhost:3000' })
         // localStorage.removeItem("authToken")
-        axios.get("http://localhost:7000/api/user/logout")
+        axios.get("http://localhost:7000/api/user/logout", { withCredentials: true })
             .then((response) => {
+                toast.success(JSON.stringify(response.data.message), { theme: "dark", position: "top-center" })
                 console.log(JSON.stringify(response.data));
+                router.push("/")
             })
             .catch((error) => {
                 console.log(error);
             });
-        router.push("/")
+
     }
 
     const handleChange = (e) => {
